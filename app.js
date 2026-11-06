@@ -52,7 +52,7 @@
     let count = 0;
     cards.forEach(card => {
       const matchesCategory = category === 'all' || card.dataset.group === category;
-      const matchesQuery = !query || query.split(/\s+/).every(word => searchable.get(card.id).includes(word));
+      const matchesQuery = !query || searchable.get(card.id).includes(query);
       const matchesMode = mode === 'all' || (mode === 'priority' && card.dataset.priority === 'true') ||
         (mode === 'saved' && state.saved.includes(card.id)) || (mode === 'done' && state.done.includes(card.id)) ||
         (mode === 'todo' && !state.done.includes(card.id));
