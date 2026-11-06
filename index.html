@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><meta name="description" content="Sổ tay luyện nói phỏng vấn Bank Solutions: Java, Spring, OOP, bảo mật và system design. Script tiếng Việt, mở offline, không cần đăng nhập.">
+<title>Fintech Fieldnotes — Sổ tay phỏng vấn của Minh</title><style>:root{--bg:#f7f5ef;--paper:#fffefa;--ink:#182b2a;--muted:#5c6e69;--line:#dadfd5;--accent:#be4928;--soft:#f5e8d8;--green:#245748;--sidebar:#192e2b;--reading:18px;--shadow:0 10px 35px #253d2c07;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:165px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;line-height:1.6}button,input,select,textarea{font:inherit}button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #d47444;outline-offset:4px}a{color:inherit}button{border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink);padding:9px 13px;font-size:13px;font-weight:600}button:hover{border-color:var(--muted);background:var(--soft)}button[aria-pressed=true]{background:var(--green);border-color:var(--green);color:white}[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:fixed;top:-80px;left:20px;z-index:100;background:var(--paper);padding:15px}.skip:focus{top:15px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:262px;background:var(--sidebar);color:#edf0e7;padding:32px 22px;display:flex;flex-direction:column;overflow:auto;z-index:20}.brand{text-decoration:none;display:flex;align-items:center;gap:13px;font-size:27px;font-weight:650;letter-spacing:-1px}.brand-mark{font:italic 42px Georgia,serif;background:#cf603b;color:#fff4df;width:48px;height:52px;display:grid;place-items:center;border-radius:12px}.brand-sub{display:block;font:9px "Segoe UI",sans-serif;letter-spacing:2px;color:#bccdc5;margin-top:-1px}.sidebar-intro{font-size:10px;letter-spacing:2px;color:#c3cfc7;margin:40px 10px 20px}.sidebar-intro span{display:block;letter-spacing:0;font-size:16px;color:#eef1e6;margin-top:7px}.nav-wrap>summary{display:none}.nav-item{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;border:0;background:transparent;color:#ccd8cf;border-radius:6px;padding:11px 10px;font-size:12px;font-weight:500;margin-bottom:3px}.nav-item>span:last-child{font-size:10px;color:#b9c8be;align-self:center}.nav-item:hover{background:#2b433a;color:white}.nav-item.active,.nav-item[aria-pressed=true]{background:#3a5040;color:#faf4d3}.nav-item.active>span:last-child{color:#faf4d3}.progress-box{border:1px solid #456052;border-radius:9px;padding:16px;margin:28px 1px 20px}.progress-box>div{display:flex;justify-content:space-between;font-size:11px}.progress-box strong{font-variant-numeric:tabular-nums}progress{width:100%;height:5px;border:none;border-radius:8px;background:#405346;margin:12px 0 2px;accent-color:#d4dc9c}progress::-webkit-progress-bar{background:#405346;border-radius:8px}progress::-webkit-progress-value{background:#d4dc9c;border-radius:8px}.progress-box p{font-size:11px;line-height:1.8;color:#c5d0c7;margin:8px 0 0}.sources-nav{font-size:12px;color:#d4dece;text-decoration:none;padding:4px 10px}.sidebar-bottom{margin-top:auto;padding:30px 10px 0;font-size:9px;letter-spacing:1.5px;color:#adbfaf;line-height:1.9}
+main{margin-left:262px;padding:0 clamp(26px,4.5vw,80px);max-width:1740px}.topbar{height:84px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:15px;font-size:10px;letter-spacing:1.8px;color:var(--muted)}.topbar>div{display:flex;align-items:center;gap:20px;letter-spacing:0}.topbar a{font-size:12px;text-decoration:none}.topbar button{background:transparent;border:0;padding:7px 0;font-size:12px}.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.8fr);gap:55px;align-items:center;padding:64px 0 48px}.eyebrow{font-size:10px;letter-spacing:1.9px;font-weight:700;color:var(--muted);margin:0 0 16px}.eyebrow>span{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;margin-right:7px}h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(45px,4.5vw,72px);line-height:1.13;letter-spacing:-2.4px;margin:18px 0 25px;font-weight:400}h1 em{color:var(--accent);font-weight:400}.hero-copy{max-width:490px;font-size:16px;color:var(--muted);line-height:1.85}.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:25px}.primary{background:var(--green);color:white;border-color:var(--green);padding:13px 18px}.primary:hover{background:#1b493c;color:white}.primary span{margin-left:18px}.secondary{background:transparent;border-color:transparent;font-size:12px;padding:12px 0}.hero-foot{font-size:11px;color:var(--muted);margin-top:22px}.hero-note{background:var(--soft);padding:26px 30px;border-radius:5px;transform:rotate(1deg);border:1px solid #dfd4c0;box-shadow:7px 8px 0 #e7e9df}.note-top{display:flex;justify-content:space-between;gap:15px;letter-spacing:1px;font-size:9px;color:#73644d}.hero-note h2{font:normal 29px/1.3 Georgia,serif;letter-spacing:-.5px;margin:22px 0}.hero-note ol{list-style:none;margin:0;padding:0}.hero-note li{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-top:1px solid #dcccba}.hero-note li>span{font-size:10px;font-variant-numeric:tabular-nums;color:#8b6c4b;padding-top:4px}.hero-note strong{font-size:13px;font-weight:650}.hero-note li p{margin:3px 0;font-size:11px;color:#665e50}.note-bottom{border-top:1px solid #dcccba;font-size:8px;letter-spacing:1.1px;padding-top:17px;margin-top:8px;color:#74634c}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:23px 0;gap:20px}.stats>div{display:flex;align-items:center;gap:15px;border-right:1px solid var(--line)}.stats>div:last-child{border:0}.stats strong{font:normal 36px Georgia,serif;color:var(--green)}.stats strong>span{font-size:25px}.stats>div>span{font-size:11px;line-height:1.7;color:var(--muted)}.howto{display:flex;align-items:baseline;gap:22px;margin:25px 0 48px;padding:0 1px}.howto strong{font-size:12px;white-space:nowrap}.howto p{font-size:12px;color:var(--muted);margin:0;line-height:1.8}
+.section-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:23px;gap:10px}.section-heading h2,.references h2{font:normal 31px/1.3 Georgia,serif;margin:0}.section-heading .eyebrow{font-size:9px;margin-bottom:9px}.section-heading>span{font-size:12px;color:var(--muted);white-space:nowrap}.toolbar{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 0 16px;margin-bottom:18px;border-bottom:1px solid var(--line)}.search{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 14px}.search>span{font-size:26px;line-height:1;color:var(--muted)}.search input{border:0;outline:none;background:transparent;color:var(--ink);width:100%;padding:6px 0;font-size:14px;min-width:0}.tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.tools button,.tools select{font-size:11px;padding:8px 11px}.tools select{background:var(--paper);border:1px solid var(--line);border-radius:6px;color:var(--ink);max-width:100%}.tools #print{margin-left:auto}.card{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:30px clamp(20px,3vw,44px);margin-bottom:24px;box-shadow:var(--shadow);scroll-margin-top:165px;overflow-wrap:anywhere}.card.completed{border-left:4px solid var(--green)}.card-meta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted);flex-wrap:wrap}.number{font-size:11px;color:var(--accent);border:1px solid var(--line);border-radius:4px;padding:2px 7px;letter-spacing:.5px}.badge{margin-left:auto;font-size:9px;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:3px 10px}.badge.priority{background:#edf0dc;color:#485a23;border-color:#dce3c4}.card h3{font-size:24px;line-height:1.45;letter-spacing:-.5px;margin:18px 0 9px;font-weight:650}.permalink{text-decoration:none}.permalink:hover{color:var(--accent)}.cue{font-size:13px;color:var(--muted);margin:0 0 18px}.card-actions{display:flex;flex-wrap:wrap;gap:7px;padding-bottom:20px;border-bottom:1px solid var(--line)}.card-actions button{font-size:11px;padding:7px 10px}.card-actions .start-timer{margin-left:auto}.structure{font-size:11px;color:var(--accent);padding-top:21px;font-weight:600}.spoken{font-size:var(--reading);line-height:1.95;max-width:77ch}.spoken p{margin:20px 0}.personal{font-size:13px;border-left:3px solid var(--accent);background:var(--soft);padding:12px 16px;margin-top:20px}.deep-dive,.workbench,.notes{border-top:1px solid var(--line);margin-top:24px;padding-top:17px}summary{cursor:pointer;font-size:13px;font-weight:650;padding:4px 0}summary::marker{color:var(--accent)}.follow{padding:10px 0}.follow h4{font-size:15px;margin:7px 0}.follow p{font-size:15px;line-height:1.85;margin:7px 0;color:var(--muted)}.trap{background:var(--bg);border-left:3px solid #c48b59;padding:14px 18px;margin-top:23px;border-radius:0 5px 5px 0}.trap strong{font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:1px}.trap p{font-size:13px;margin:4px 0 0;line-height:1.8}.card-sources{font-size:11px;color:var(--muted);line-height:1.9;margin-top:18px}.notes label{font-size:11px;color:var(--muted);display:block;margin:10px 0}.notes textarea{width:100%;background:var(--bg);border:1px solid var(--line);padding:12px;border-radius:7px;color:var(--ink);resize:vertical;line-height:1.7;font-size:15px}.workbench{font-size:15px;line-height:1.85}.workbench h4{font-size:17px;margin:25px 0 10px}.workbench ul{padding-left:23px}.workbench li{margin:9px 0}pre{font-size:12px;line-height:1.9;background:var(--sidebar);color:#e4e9de;padding:22px;border-radius:7px;overflow:auto;white-space:pre}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px;text-align:left;border:1px solid var(--line);vertical-align:top}th{background:var(--soft)}td:first-child{min-width:100px}.notice{font-size:13px;padding:15px;background:var(--soft);border:1px solid var(--line);border-radius:6px}#empty{text-align:center;padding:50px 20px;background:var(--paper);border:1px dashed var(--line);border-radius:9px}.references{padding:48px 0 35px;border-top:1px solid var(--line);margin-top:50px}.references>p:not(.eyebrow){font-size:13px;color:var(--muted);max-width:80ch;line-height:1.9}.references ul{display:grid;grid-template-columns:1fr 1fr;gap:11px 35px;padding-left:18px;font-size:12px}.references a{text-underline-offset:4px}.references li::marker{color:var(--accent)}footer{padding:30px 0 100px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}footer>span{font-size:9px;letter-spacing:1.5px}footer p{max-width:80ch;line-height:1.8}footer>a{display:inline-block;margin-top:10px}.timer{position:fixed;bottom:22px;right:25px;z-index:30;display:flex;align-items:center;gap:10px;padding:13px 15px;background:var(--sidebar);color:#fff8e8;border:1px solid #667a5a;border-radius:12px;box-shadow:0 12px 40px #0003}.timer>div{display:flex;flex-direction:column;min-width:100px}.timer>div>span{font-size:10px;color:#d2dccc;max-width:230px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.timer strong{font-size:25px;line-height:1.2;font-variant-numeric:tabular-nums}.timer button{font-size:11px;background:transparent;color:#fff8e8;border-color:#697b68;padding:8px}.timer.finished{border:2px solid #ecaa73}.timer.finished strong{color:#ffca8a}.timer #timer-close{font-size:22px;border:0;padding:2px 5px}
+body.dark{--bg:#14211f;--paper:#1c2b27;--ink:#e3e8dd;--muted:#b0bfb3;--line:#3d5145;--accent:#efa078;--soft:#313d2d;--green:#9fbc93;--sidebar:#101b18;--shadow:none;color-scheme:dark}body.dark .primary{color:#18281e}body.dark .hero-note{border-color:#53604b;box-shadow:7px 8px 0 #27372b}body.dark .hero-note li,body.dark .note-bottom{border-color:#627054}body.dark .hero-note p,body.dark .note-top,body.dark .note-bottom,body.dark .hero-note li>span{color:#c6ceb7}body.dark .badge.priority{background:#334b30;color:#ddebc2;border-color:#526b42}body.dark button[aria-pressed=true]{color:#14211f}body.dark .nav-item[aria-pressed=true]{color:#faf4d3;background:#3a5040}body.dark .primary:hover{background:#b1cda5}
+@media(min-width:1600px){main{padding-left:85px;padding-right:85px}.hero{gap:90px}}@media(max-width:1180px){.sidebar{width:230px;padding:25px 16px}main{margin-left:230px;padding:0 30px}.hero{gap:28px}.hero-note{padding:23px}.hero-actions{align-items:flex-start;flex-direction:column;gap:4px}.stats>div{gap:10px}.stats strong{font-size:30px}.stats>div>span{font-size:10px}.howto{display:block}.howto p{margin-top:8px}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:24px;padding:40px 0 30px}.hero-note{transform:none;max-width:none;box-shadow:none}.hero-note h2{font-size:25px}.hero-note ol{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.hero-note li{gap:8px}.hero-note h2 br{display:none}.hero-actions{flex-direction:row;align-items:center;gap:12px}h1{font-size:54px}.stats{grid-template-columns:repeat(2,1fr)}.stats>div:nth-child(2){border:0}.references ul{grid-template-columns:1fr}.card h3{font-size:22px}}
+@media(max-width:700px){html{scroll-padding-top:185px}.sidebar{position:relative;inset:auto;width:100%;padding:18px 20px;overflow:visible}.brand{font-size:24px}.brand-mark{width:39px;height:42px;font-size:33px}.brand-sub{font-size:8px}.sidebar-intro,.sidebar-bottom,.sources-nav,.progress-box{display:none}.nav-wrap{margin-top:18px;border-top:1px solid #405547;padding-top:9px}.nav-wrap>summary{display:flex;justify-content:space-between;font-size:12px;list-style:none}.nav-wrap>summary::-webkit-details-marker{display:none}.nav-wrap nav{padding-top:12px}.nav-item{font-size:13px}.nav-wrap[open]>summary span{transform:rotate(180deg)}main{margin:0;padding:0 20px}.topbar{height:59px;font-size:8px;letter-spacing:1px}.topbar>div{gap:12px}.topbar button,.topbar a{font-size:10px}.hero{padding:35px 0 30px}.eyebrow{font-size:8px;letter-spacing:1.3px}h1{font-size:49px;letter-spacing:-1.8px}.hero-copy{font-size:15px}.hero-note ol{grid-template-columns:1fr}.hero-note li{padding:10px 0;gap:14px}.hero-note li p{font-size:12px}.hero-note{padding:22px}.hero-note h2{margin:15px 0}.hero-foot{font-size:10px}.stats{gap:18px;padding:22px 0}.stats strong{font-size:32px}.stats>div>span{font-size:10px}.howto{margin-bottom:30px}.section-heading h2{font-size:25px}.section-heading>span{font-size:10px}.toolbar{padding-top:10px}.search input{font-size:12px}.tools{gap:6px}.tools button,.tools select{font-size:10px;padding:7px 8px}.tools #print{margin-left:0}.card{padding:22px 18px;border-radius:9px;scroll-margin-top:185px}.card h3{font-size:21px}.card-meta{font-size:10px;gap:7px}.badge{font-size:8px;padding:3px 7px}.card-actions{gap:6px}.card-actions button{font-size:10px}.card-actions .start-timer{margin-left:0}.spoken{font-size:var(--reading);line-height:1.9}.structure{font-size:10px;line-height:1.8}.cue{font-size:12px}.timer{right:10px;left:10px;bottom:10px;padding:10px;gap:7px}.timer>div{min-width:0;flex:1}.timer>div>span{max-width:150px}.timer button{font-size:10px;padding:7px}.references h2{font-size:27px}pre{font-size:11px;padding:15px}table{font-size:11px}td,th{padding:8px}.workbench{font-size:14px}td:first-child{min-width:70px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{body,body.dark{--bg:#fff;--paper:#fff;--ink:#000;--muted:#333;--line:#ccc;--accent:#333;--reading:12pt;background:#fff;color:#000}.sidebar,.topbar,.hero,.stats,.howto,.toolbar,.card-actions,.timer,.notes,.skip,.hero-actions,#empty,.section-heading .eyebrow{display:none!important}main{margin:0;padding:0;max-width:none}.card{box-shadow:none;border:0;border-bottom:1px solid #bbb;padding:10px 0;margin:0 0 20px;break-inside:auto}.card h3{font-size:17pt;break-after:avoid}.answer[hidden]{display:block!important}.spoken{max-width:none;font-size:12pt;line-height:1.6}.spoken p{orphans:3;widows:3}.card-meta{font-size:9pt}.badge{border:0}.structure{font-size:9pt}.references{break-before:page}.references ul{display:block}.references li{margin:10px 0}pre{white-space:pre-wrap;background:#eee;color:#111;font-size:9pt}a{text-decoration:none}.trap{break-inside:avoid}footer{padding:20px 0}.section-heading{margin:0 0 15px}.workbench table{font-size:9pt}summary{font-size:11pt}}
+/* Use a Vietnamese-complete UI font for display text as well as body copy. */
+h1{font-family:"Segoe UI",Arial,sans-serif;font-weight:650;letter-spacing:-2px}h1 em{font-weight:450}.hero-note h2{font-family:"Segoe UI",Arial,sans-serif;font-size:27px;font-weight:550}.hero-note h2 br:after{content:" "}
+</style></head>
+<body><a class="skip" href="#library">Đến nội dung</a>
+<aside class="sidebar"><a class="brand" href="#top"><span class="brand-mark">f.</span><span>fintech<span class="brand-sub">FIELDNOTES / VOL. 01</span></span></a>
+<div class="sidebar-intro">SỔ TAY CỦA MINH<span>Hiểu sâu. Nói rõ.</span></div>
+<details class="nav-wrap" open><summary>Chọn chủ đề <span>⌄</span></summary><nav aria-label="Chủ đề"><button class="nav-item active" data-category="all" aria-pressed="true"><span>Tất cả bài luyện</span><span>46</span></button><button class="nav-item" data-category="OOP &amp; Patterns"><span>OOP &amp; Patterns</span><span>06</span></button><button class="nav-item" data-category="Java &amp; Concurrency"><span>Java &amp; Concurrency</span><span>09</span></button><button class="nav-item" data-category="Spring &amp; Database"><span>Spring &amp; Database</span><span>07</span></button><button class="nav-item" data-category="Giao dịch &amp; Distributed"><span>Giao dịch &amp; Distributed</span><span>08</span></button><button class="nav-item" data-category="Bảo mật &amp; Identity"><span>Bảo mật &amp; Identity</span><span>06</span></button><button class="nav-item" data-category="Vận hành &amp; Chất lượng"><span>Vận hành &amp; Chất lượng</span><span>03</span></button><button class="nav-item" data-category="Kinh nghiệm thực tế"><span>Kinh nghiệm thực tế</span><span>05</span></button><button class="nav-item" data-category="System design • 40 phút"><span>System design • 40 phút</span><span>01</span></button><button class="nav-item" data-category="System design • Mở rộng"><span>System design • Mở rộng</span><span>01</span></button></nav></details>
+<div class="progress-box"><div><span>Nhịp luyện của bạn</span><strong id="progress-label">0/46</strong></div><progress id="progress" max="46" value="0" aria-label="Số bài đã luyện"></progress><p>Không cần thuộc từng chữ.<br>Hãy kể lại bằng cách của mình.</p></div>
+<a class="sources-nav" href="#references">Tài liệu gốc ↗</a><div class="sidebar-bottom">BANK SOLUTIONS<br>INTERVIEW PRACTICE · 2026</div></aside>
+<main id="top"><header class="topbar"><span>LEARN / FINTECH ENGINEERING</span><div><button id="theme" aria-label="Chuyển sang giao diện tối">Giao diện tối</button><a href="https://github.com/tonminhce/learn-fintech" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></header>
+<section class="hero"><div><p class="eyebrow"><span></span> CHUẨN BỊ CHO BUỔI PHỎNG VẤN 2 GIỜ</p><h1>Hiểu bản chất.<br><em>Nói thành lời.</em></h1><p class="hero-copy">Bộ script để Minh đọc thành tiếng, luyện cách lập luận và tự tin đi sâu vào từng quyết định kỹ thuật.</p><div class="hero-actions"><button class="primary" id="start-priority">Bắt đầu với câu ưu tiên <span>↗</span></button><button id="open-design" class="secondary">Luyện system design →</button></div><p class="hero-foot">Java · OOP · Spring · Distributed systems · Security</p></div>
+<div class="hero-note"><div class="note-top">BUỔI LUYỆN HÔM NAY <span>01 / 03</span></div><h2>Đừng học thuộc.<br> Hãy giải thích.</h2><ol><li><span>01</span><div><strong>Đọc để quen mồm</strong><p>Nắm mạch lập luận và ví dụ.</p></div></li><li><span>02</span><div><strong>Ẩn script, tự trả lời</strong><p>Bấm giờ, nói bằng lời của mình.</p></div></li><li><span>03</span><div><strong>Hỏi thêm “nếu lỗi thì sao?”</strong><p>Thử một race condition hoặc timeout.</p></div></li></ol><div class="note-bottom">MỘT CÂU TRẢ LỜI TỐT CÓ CẢ GIỚI HẠN.</div></div></section>
+<section class="stats" aria-label="Nội dung"><div><strong>39</strong><span>script lý thuyết<br>1–2 phút / câu</span></div><div><strong>05</strong><span>mẫu kể kinh nghiệm<br>3–5 phút / câu</span></div><div><strong>40<span>′</span></strong><span>bài thiết kế chính<br>kèm API, schema & lỗi</span></div><div><strong>∞</strong><span>lượt luyện lại<br>offline, không đăng nhập</span></div></section>
+<section class="howto"><strong>Trước khi bắt đầu</strong><p>Câu ưu tiên được chọn từ JD và gợi ý HR, không phải đề nội bộ hay cam kết xác suất được hỏi. Đọc script lý thuyết theo nhịp tự nhiên; thời lượng là mục tiêu luyện. Kinh nghiệm có [chỗ trống] cần điền sự thật. Bài 40 phút gồm cả vẽ, tính toán và câu hỏi đào sâu.</p></section>
+<section id="library" class="library"><div class="section-heading"><div><p class="eyebrow">YOUR PRACTICE LIBRARY</p><h2 id="section-title">Tất cả bài luyện</h2></div><span id="result-count" role="status" aria-live="polite">46 bài</span></div>
+<div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Tìm câu hỏi, ví dụ: volatile, timeout, SSO…" aria-label="Tìm trong câu hỏi và script"></label><div class="tools"><label class="sr-only" for="filter">Lọc bài luyện</label><select id="filter"><option value="all">Tất cả trạng thái</option><option value="priority">Ưu tiên cao</option><option value="saved">Đã lưu</option><option value="todo">Chưa luyện</option><option value="done">Đã luyện</option></select><button id="practice" aria-pressed="false">Ẩn tất cả script</button><button id="font-down" aria-label="Giảm cỡ chữ">A−</button><button id="font-up" aria-label="Tăng cỡ chữ">A+</button><button id="print">In phần đang lọc</button></div></div>
+<noscript><p class="notice">JavaScript đang tắt. Bạn vẫn đọc và in được toàn bộ script; tìm kiếm, bộ đếm giờ và lưu tiến độ cần JavaScript.</p></noscript>
+<p id="storage-warning" class="notice" hidden>Trình duyệt không cho lưu cục bộ. Bạn vẫn đọc và luyện được, nhưng tiến độ/ghi chú có thể mất khi đóng trang.</p>
+<div id="cards"><article class="card" id="oop" data-group="OOP &amp; Patterns" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">01</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#oop">Bốn tính chất OOP là gì?</a></h3>
+    <p class="cue">Bảo vệ trạng thái → hợp đồng → thay thế implementation</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-oop">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Bốn tính chất OOP là gì?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-oop"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Theo em, OOP tổ chức chương trình quanh đối tượng có trạng thái và hành vi. Bốn tính chất chính là đóng gói, trừu tượng, kế thừa và đa hình. Điều quan trọng là giải thích chúng giúp bảo vệ nghiệp vụ và thay đổi code như thế nào.</p>
+<p>Đóng gói nghĩa là kiểm soát việc thay đổi trạng thái. Ví dụ, Wallet không cho bên ngoài tùy ý set số dư; thao tác giữ tiền phải kiểm tra số tiền dương và số dư khả dụng. Trừu tượng là đưa ra hợp đồng cần dùng, chẳng hạn BankConnector có thao tác chuyển tiền và truy vấn trạng thái, còn chi tiết HTTP và chữ ký nằm bên trong.</p>
+<p>Kế thừa thể hiện quan hệ is-a và cho phép tái sử dụng phần phù hợp của lớp cha. Đa hình cho phép service gọi cùng một interface nhưng chạy implementation của các ngân hàng khác nhau. Service không cần tự chứa toàn bộ điều kiện riêng của từng ngân hàng.</p>
+<p>Em không xem getter và setter là đủ để có đóng gói tốt. Nếu setter cho phép object rơi vào trạng thái sai thì nghiệp vụ vẫn chưa được bảo vệ. Em cũng ưu tiên composition khi mục tiêu là lắp ghép hoặc thay thế hành vi, tránh cây kế thừa quá sâu gây phụ thuộc khó kiểm soát.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Đóng gói và trừu tượng khác nhau thế nào?</h4><p>Đóng gói kiểm soát trạng thái và quyền truy cập implementation; trừu tượng chọn hợp đồng cần thể hiện, bỏ qua chi tiết không cần cho bên sử dụng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Đừng chỉ đọc bốn định nghĩa; luôn gắn với Wallet hoặc BankConnector.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-oop">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-oop" data-note="oop" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="interface" data-group="OOP &amp; Patterns" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">02</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#interface">Interface, abstract class và composition khác nhau thế nào?</a></h3>
+    <p class="cue">Hợp đồng → phần chung thực sự → tránh kế thừa ép buộc</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-interface">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Interface, abstract class và composition khác nhau thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-interface"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em dùng interface khi cần mô tả một khả năng hoặc hợp đồng mà nhiều implementation có thể thực hiện. Abstract class phù hợp khi các lớp có quan hệ gần nhau và cần chia sẻ trạng thái hoặc một phần thuật toán. Một class implement được nhiều interface nhưng chỉ extends một class.</p>
+<p>Ví dụ, em định nghĩa BankConnector để service phụ thuộc hợp đồng chung. Mỗi connector nhận HTTP client, signer và mapper qua constructor. Đây là composition: object được tạo từ các thành phần cộng tác, nên có thể thay từng thành phần và test độc lập.</p>
+<p>Nếu mọi ngân hàng thực sự có cùng một bộ khung thuật toán ổn định, em có thể cân nhắc abstract class hoặc Template Method. Tuy nhiên, nếu ngân hàng nào cũng phải override nhiều bước và thêm ngoại lệ, đó là dấu hiệu phần trừu tượng đang bị ép.</p>
+<p>Từ Java 8, interface có default method, nhưng không vì thế thay thế hoàn toàn abstract class. Em lựa chọn từ mức độ thay đổi và hợp đồng, không từ mong muốn giảm vài dòng code. Khi chưa có nhu cầu rõ, một implementation đơn giản thường dễ bảo trì hơn một hierarchy nhiều tầng.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Khi nào inheritance vi phạm thiết kế?</h4><p>Khi lớp con không giữ được hợp đồng của lớp cha hoặc phải vô hiệu hóa hành vi mà bên dùng đang dựa vào; đó cũng là vấn đề Liskov substitution.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Tái sử dụng code không đủ để kết luận nên dùng inheritance.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-interface">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-interface" data-note="interface" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="solid" data-group="OOP &amp; Patterns" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">03</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#solid">Giải thích SOLID bằng module tích hợp ngân hàng</a></h3>
+    <p class="cue">Mỗi nguyên tắc → một quyết định cụ thể</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-solid">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Giải thích SOLID bằng module tích hợp ngân hàng">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-solid"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em hiểu SOLID là các nguyên tắc giúp code dễ thay đổi và kiểm thử. Với Single Responsibility, em tách orchestration giao dịch, giao tiếp ngân hàng và persistence vì chúng có những lý do thay đổi khác nhau.</p>
+<p>Open/Closed nghĩa là mở rộng được hành vi mà hạn chế sửa phần ổn định. Khi thêm ngân hàng, em thêm connector và cấu hình đăng ký thay vì sửa if-else ở nhiều service. Liskov Substitution yêu cầu implementation giữ đúng hợp đồng: nếu accepted chỉ là đã tiếp nhận, connector không được trả accepted với ý nghĩa đã chuyển tiền xong.</p>
+<p>Interface Segregation giúp interface vừa với bên dùng. Ngân hàng chỉ hỗ trợ transfer không nên bị ép implement refund. Dependency Inversion nghĩa là policy nghiệp vụ phụ thuộc abstraction, không gắn trực tiếp với SDK cụ thể; implementation được cung cấp từ bên ngoài.</p>
+<p>Em không hiểu SOLID là mỗi class chỉ có một method hay mọi class phải có interface. Abstraction chỉ đáng giá khi phản ánh trách nhiệm hoặc điểm thay đổi thật. Trade-off của tách quá nhỏ là phải đi qua nhiều lớp mới hiểu được một luồng đơn giản.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>DI và DIP có giống nhau không?</h4><p>DIP là nguyên tắc về hướng phụ thuộc. DI là kỹ thuật cung cấp dependency từ bên ngoài; dùng Spring inject một concrete class chưa tự chứng minh thiết kế đã theo DIP.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Đừng chỉ mở rộng năm chữ cái mà không có ví dụ.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-solid">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-solid" data-note="solid" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="strategy" data-group="OOP &amp; Patterns" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">04</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#strategy">Strategy, Factory và Adapter phối hợp ra sao?</a></h3>
+    <p class="cue">Chọn hành vi • cung cấp object • chuyển hợp đồng</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-strategy">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Strategy, Factory và Adapter phối hợp ra sao?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-strategy"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Ba pattern này giải quyết ba vấn đề khác nhau. Strategy cho phép thay thế thuật toán hoặc hành vi qua một hợp đồng chung. Factory đóng gói việc tạo hoặc cung cấp object. Adapter chuyển một interface bên ngoài sang hợp đồng mà hệ thống mình sử dụng.</p>
+<p>Trong bài tích hợp ngân hàng, mỗi BankConnector chuyển request nội bộ sang payload của ngân hàng, ký và map response về kiểu chung; đây là vai trò Adapter. Ở tầng orchestration, việc sử dụng các connector có thể thay thế nhau mang tính Strategy. Registry hoặc factory cung cấp connector phù hợp theo bank code.</p>
+<p>Ví dụ, TransferService chỉ yêu cầu connector gửi giao dịch với mã tham chiếu ổn định. Nó không biết ngân hàng A dùng JSON hay ngân hàng B dùng XML. Khi thêm ngân hàng, em thêm implementation và kiểm thử hợp đồng, thay vì đưa chi tiết giao thức vào service.</p>
+<p>Em vẫn giữ các khác biệt nghiệp vụ thật, chẳng hạn ngân hàng không hỗ trợ inquiry hoặc có trạng thái bất đồng bộ riêng. Chuẩn hóa không có nghĩa là che mất thông tin cần cho recovery. Em cũng không gọi mọi hàm trả về object là Factory Method; tên pattern cần phù hợp cấu trúc thực tế.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có cần cả ba pattern mọi lúc không?</h4><p>Không. Một registry do dependency injection cung cấp có thể đủ; chỉ thêm factory khi có logic lựa chọn hoặc khởi tạo cần đóng gói.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Đừng trộn Factory là chọn object với Strategy là thay hành vi.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-strategy">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-strategy" data-note="strategy" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="singleton" data-group="OOP &amp; Patterns" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">05</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#singleton">Singleton có thread-safe không? Spring singleton là gì?</a></h3>
+    <p class="cue">Một instance ≠ trạng thái an toàn ≠ một instance toàn cluster</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-singleton">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Singleton có thread-safe không? Spring singleton là gì?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-singleton"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Singleton kiểm soát số instance của một class trong phạm vi nhất định và cung cấp điểm truy cập. Trong Java có thể triển khai bằng eager initialization, static holder hoặc enum. Với lazy double-checked locking, cần đồng bộ đúng và dùng volatile cho reference.</p>
+<p>Em tách hai vấn đề: tạo instance an toàn và sử dụng instance an toàn. Dù khởi tạo thread-safe, một singleton có field mutable mà nhiều thread cùng sửa vẫn có race condition. Ví dụ, service giữ currentUser hoặc currentTransfer ở field sẽ làm dữ liệu giữa các request ảnh hưởng nhau.</p>
+<p>Spring singleton mặc định là một instance cho mỗi bean definition trong một container. Khi ứng dụng chạy nhiều pod, mỗi container vẫn có bean riêng. Vì thế em thường thiết kế service stateless, giữ dữ liệu request ở biến cục bộ và quản lý dữ liệu chia sẻ tại tầng phù hợp.</p>
+<p>Em không dùng Singleton làm cơ chế bảo đảm chỉ có một lệnh trừ tiền trong toàn hệ thống. Invariant số dư cần được bảo vệ ở database hoặc ledger service có cơ chế concurrency rõ ràng. Global state cũng làm test khó cô lập, nên em ưu tiên dependency injection hơn việc gọi singleton tĩnh ở khắp nơi.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Tại sao double-checked locking cần volatile?</h4><p>Để việc công bố reference có bảo đảm visibility và ordering cần thiết; tránh thread khác quan sát một object chưa được công bố an toàn.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Thread-safe construction không đồng nghĩa thread-safe business logic.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-singleton">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-singleton" data-note="singleton" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="other-patterns" data-group="OOP &amp; Patterns" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">06</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#other-patterns">State, Builder, Observer và Template Method dùng khi nào?</a></h3>
+    <p class="cue">Nói vấn đề trước → pattern sau</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-other-patterns">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: State, Builder, Observer và Template Method dùng khi nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-other-patterns"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>State hữu ích khi hành vi phụ thuộc trạng thái và các quy tắc chuyển trạng thái đủ phức tạp. Với giao dịch, em xác định trạng thái nào được phép chuyển, sự kiện nào kích hoạt và tác động nào chỉ thực hiện một lần. Nếu đơn giản, enum cùng bảng transition có thể đủ, chưa cần một class cho mỗi trạng thái.</p>
+<p>Builder giúp tạo object có nhiều tham số, nhất là object immutable. Nhưng builder vẫn phải validate trường bắt buộc và tổ hợp giá trị, chẳng hạn amount dương và currency hợp lệ. Nó không tự bảo đảm nghiệp vụ đúng.</p>
+<p>Observer mô tả bên đăng ký nhận thông báo về thay đổi. Em phân biệt notification trong cùng process với event qua broker: messaging phân tán có thêm delivery, duplicate, ordering và recovery. Template Method định nghĩa bộ khung thuật toán ở lớp cha và để lớp con thay một số bước.</p>
+<p>Ví dụ, sau khi giao dịch thành công, một event có thể kích hoạt thông báo. Tuy nhiên, em không để lỗi gửi SMS rollback giao dịch tiền đã hoàn tất. Trade-off chung là pattern thêm cấu trúc và indirection, nên cần lợi ích rõ về thay đổi hoặc kiểm thử.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>State khác Strategy ở đâu?</h4><p>Strategy thường là lựa chọn cách thực hiện hành vi; State mô hình hóa hành vi và chuyển đổi theo trạng thái của object. Chúng có thể có cấu trúc tương tự nhưng ý định khác.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không cần thuộc toàn bộ danh mục GoF trước khi hiểu nhóm pattern cốt lõi.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-other-patterns">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-other-patterns" data-note="other-patterns" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="jmm" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">07</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#jmm">JMM, volatile, synchronized và atomic khác nhau thế nào?</a></h3>
+    <p class="cue">Visibility • atomicity • ordering • phạm vi JVM</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-jmm">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: JMM, volatile, synchronized và atomic khác nhau thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-jmm"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Java Memory Model mô tả những bảo đảm khi thread đọc và ghi bộ nhớ chia sẻ. Em phân biệt visibility, tức nhìn thấy thay đổi; atomicity, tức thao tác không bị xen ngang gây sai kết quả; và ordering, tức những ràng buộc về thứ tự có thể quan sát.</p>
+<p>volatile cung cấp bảo đảm visibility và ordering thông qua happens-before, nhưng không biến một chuỗi đọc-sửa-ghi thành nguyên tử. count++ vẫn có thể mất cập nhật. synchronized bảo vệ vùng critical section giữa các thread dùng cùng monitor và có bảo đảm visibility khi nhả và lấy khóa.</p>
+<p>AtomicInteger cung cấp thao tác nguyên tử trên một biến, ví dụ incrementAndGet hoặc compareAndSet. Em có thể dùng volatile cho cờ dừng, atomic cho bộ đếm, và lock khi cần giữ invariant trên nhiều giá trị liên quan. Với cập nhật nhiều field, từng field atomic riêng chưa đủ để toàn bộ trạng thái nhất quán.</p>
+<p>Các cơ chế này chỉ giải quyết concurrency trong JVM. Nếu hai pod cùng trừ số dư trong database, synchronized tại một pod không bảo vệ được pod còn lại. Lúc đó em cần transaction, constraint hoặc cơ chế phối hợp tại nơi dữ liệu được quản lý.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Happens-before có phải thứ tự thời gian thực không?</h4><p>Nó là quan hệ bảo đảm về visibility và ordering giữa các hành động, không đơn giản là quan sát đồng hồ thấy thao tác A chạy trước B.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Đừng giải thích volatile bằng câu tuyệt đối &#x27;bỏ qua CPU cache&#x27;.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html" target="_blank" rel="noopener noreferrer">Oracle · Java 8 concurrency &amp; happens-before</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-jmm">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-jmm" data-note="jmm" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="collections" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">08</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#collections">HashMap và ConcurrentHashMap: khi nào dùng?</a></h3>
+    <p class="cue">equals/hashCode → mutable key → thao tác ghép</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-collections">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: HashMap và ConcurrentHashMap: khi nào dùng?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-collections"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>HashMap ánh xạ key đến value dựa trên hash và kiểm tra equals khi cần phân biệt key. Hai object bằng nhau theo equals phải có cùng hashCode. Nếu dùng một field mutable để tính hash rồi sửa field sau khi đưa key vào map, việc tra cứu có thể không tìm lại được entry như mong muốn.</p>
+<p>Em dùng HashMap khi dữ liệu được giới hạn trong một thread hoặc được đồng bộ đúng ở bên ngoài. ConcurrentHashMap phù hợp khi nhiều thread cùng truy cập và cập nhật map, nhưng em vẫn phải nhìn vào tính nguyên tử của thao tác nghiệp vụ.</p>
+<p>Ví dụ, containsKey rồi put là hai thao tác riêng. Nếu muốn thêm khi chưa có, em dùng putIfAbsent; nếu cần cập nhật theo giá trị hiện tại, có thể dùng compute với phần xử lý ngắn và tránh tác vụ blocking không cần thiết. ConcurrentHashMap không chấp nhận null key hoặc value.</p>
+<p>Map thread-safe cũng không tự làm object mutable bên trong thread-safe. Nếu value là một danh sách bị nhiều thread sửa, em vẫn cần thiết kế riêng. Và map trong memory không thay thế database unique constraint để chống giao dịch trùng giữa nhiều instance hoặc sau restart.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có thể dùng ConcurrentHashMap làm idempotency store không?</h4><p>Chỉ là lớp tối ưu cục bộ trong phạm vi hạn chế; không đủ làm bảo đảm bền vững vì mỗi instance có map riêng và dữ liệu mất khi process dừng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Thread-safe từng method không đồng nghĩa cả chuỗi nghiệp vụ atomic.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-collections">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-collections" data-note="collections" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="money-java" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">09</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#money-java">Vì sao không dùng double cho tiền?</a></h3>
+    <p class="cue">Biểu diễn chính xác → scale → rounding → hợp đồng</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-money-java">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Vì sao không dùng double cho tiền?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-money-java"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>double biểu diễn số thực nhị phân nên nhiều giá trị thập phân không được thể hiện chính xác. Với tiền, sai số tích lũy hoặc làm tròn không nhất quán có thể gây lệch dữ liệu. Em thường dùng BigDecimal hoặc integer biểu diễn đơn vị tiền nhỏ nhất, tùy hợp đồng dữ liệu và phạm vi giá trị.</p>
+<p>Với BigDecimal, em ưu tiên khởi tạo từ chuỗi thập phân hoặc dữ liệu đã được chuẩn hóa, tránh new BigDecimal từ một double đã mang sai số. Em định nghĩa currency, scale và quy tắc rounding rõ ràng, nhất là khi chia phí, tính tỷ lệ hoặc đổi tiền.</p>
+<p>Ví dụ, 1.0 và 1.00 có thể so sánh bằng nhau qua compareTo, nhưng equals còn xét scale. Nếu dùng làm key hoặc so sánh trong test, em cần biết khác biệt đó. BigDecimal cũng immutable: phép cộng tạo giá trị mới, không sửa object cũ.</p>
+<p>Trade-off của integer là phải thống nhất đơn vị và kiểm soát overflow. Trade-off của BigDecimal là cần quản lý scale, precision và serialization chặt chẽ. Em không làm tròn tùy ý ở mọi bước; quy tắc phải được nghiệp vụ xác nhận và dùng nhất quán giữa service, database và ngân hàng.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có phải mọi loại tiền đều có hai chữ số thập phân?</h4><p>Không. Đơn vị và số chữ số phải theo currency và hợp đồng nghiệp vụ, không hard-code mặc định cho mọi loại tiền.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Đừng dùng số tiền kiểu chuỗi mà không validate, hoặc dùng float ở frontend rồi xem đó là nguồn sự thật.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-money-java">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-money-java" data-note="money-java" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="heap-gc" data-group="Java &amp; Concurrency" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">10</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#heap-gc">Heap, stack, memory leak và G1/ZGC</a></h3>
+    <p class="cue">Đo allocation/pause/live set trước khi đổi collector</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-heap-gc">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Heap, stack, memory leak và G1/ZGC">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-heap-gc"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Stack gắn với việc thực thi method của từng thread, gồm frame và biến cục bộ; heap là vùng quản lý object theo mô hình JVM. Em tách phần này với JMM, vốn nói về hành vi truy cập bộ nhớ giữa các thread. Chi tiết tối ưu runtime có thể thay đổi cách cấp phát thực tế.</p>
+<p>Có GC vẫn có thể memory leak theo nghĩa ứng dụng giữ object không còn cần thiết nhưng vẫn reachable. Ví dụ là cache không giới hạn, listener không được gỡ hoặc ThreadLocal không được dọn khi dùng thread pool. GC không biết object đó đã vô ích về mặt nghiệp vụ.</p>
+<p>Khi điều tra, em xem heap usage sau GC, allocation rate, pause time và GC log, rồi dùng heap dump hoặc profiler khi phù hợp. Em phân biệt heap với native memory và thread stacks; tăng Xmx không giải quyết mọi loại hết bộ nhớ.</p>
+<p>Về collector, G1 hướng đến cân bằng throughput và latency, còn ZGC ưu tiên pause thấp với đánh đổi tài nguyên tùy workload. Em xác nhận phiên bản JDK và đo p95, p99, CPU, memory trước và sau. Đổi collector không thay thế việc sửa leak hoặc giảm cấp phát quá mức.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>CPU thấp nhưng latency cao có phải GC không?</h4><p>Có thể, nhưng cần kiểm tra cả lock, connection pool, downstream và queue time. Không kết luận từ một metric.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không đồng nhất heap/stack/GC với toàn bộ Java Memory Model.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html" target="_blank" rel="noopener noreferrer">Oracle · G1 và lựa chọn garbage collector</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-heap-gc">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-heap-gc" data-note="heap-gc" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="thread-pool" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">11</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#thread-pool">Thiết kế ExecutorService gọi API ngân hàng</a></h3>
+    <p class="cue">Bounded threads + bounded queue + timeout + bulkhead</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-thread-pool">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Thiết kế ExecutorService gọi API ngân hàng">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-thread-pool"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Thread pool tái sử dụng worker và kiểm soát concurrency. Em bắt đầu từ loại workload, traffic, latency downstream và giới hạn connection; không chọn pool size chỉ vì một con số quen thuộc. CPU-bound thường bị giới hạn bởi CPU, còn gọi ngân hàng chủ yếu phải chờ I/O.</p>
+<p>newFixedThreadPool dùng queue không giới hạn theo cấu hình factory mặc định, nên khi ngân hàng chậm có thể tích tụ công việc. newCachedThreadPool có thể tạo rất nhiều thread. Em thường cấu hình ThreadPoolExecutor với giới hạn thread, queue và rejection policy rõ ràng. ScheduledExecutorService phù hợp với tác vụ định thời trong process, nhưng không thay durable scheduler nếu công việc phải tồn tại qua restart.</p>
+<p>Em kết hợp timeout ở HTTP client, connection pool phù hợp và giới hạn riêng theo ngân hàng để một bên chậm không chiếm hết tài nguyên. Khi queue đầy, hành vi từ chối phải phản ánh đúng hợp đồng: request chưa được nhận bền vững khác với giao dịch đã được nhận và đang chờ.</p>
+<p>Trade-off là queue lớn hấp thụ burst nhưng tăng thời gian chờ. Em đo queue age, rejected tasks, active threads và downstream latency. Tăng thread chỉ hữu ích nếu tài nguyên phía sau còn khả năng phục vụ.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>CallerRunsPolicy có luôn tốt không?</h4><p>Không. Nó tạo backpressure bằng cách chạy trên thread gọi, nhưng có thể chặn request thread hoặc event loop; cần xem ngữ cảnh thực thi.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không dùng unbounded queue như giải pháp scale.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-thread-pool">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-thread-pool" data-note="thread-pool" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="virtual-threads" data-group="Java &amp; Concurrency" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">12</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#virtual-threads">Vì sao dùng virtual threads trong Java 21?</a></h3>
+    <p class="cue">Nhiều tác vụ chờ I/O • không tăng tốc CPU • vẫn giới hạn downstream</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-virtual-threads">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Vì sao dùng virtual threads trong Java 21?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-virtual-threads"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Virtual thread là thread nhẹ được JVM quản lý và chạy trên các platform thread. Nó giúp mô hình một thread cho một tác vụ có thể phục vụ nhiều công việc chờ I/O mà không cần tương ứng từng ấy OS thread. Lợi ích chính là khả năng xử lý đồng thời, không phải làm một phép tính chạy nhanh hơn.</p>
+<p>Ví dụ, API cần chờ nhiều lời gọi ngân hàng có thể giữ cách viết blocking dễ hiểu với virtual threads. Nhưng nếu database chỉ có một số connection hữu hạn hoặc ngân hàng chỉ chấp nhận một mức tải nhất định, virtual threads không xóa được giới hạn đó. Em vẫn dùng semaphore, rate limit, deadline và connection pool.</p>
+<p>Em không tạo pool virtual threads chỉ để tái sử dụng như platform threads; thường tạo theo task và giới hạn tài nguyên khan hiếm riêng. Em cũng xem mức sử dụng ThreadLocal và chi phí bộ nhớ khi số lượng task lớn.</p>
+<p>Riêng Java 21, blocking trong một số ngữ cảnh như synchronized có thể pin carrier thread; cần kiểm tra đúng phiên bản, library và đo workload. JD dùng Java 8 trở lên nên em sẽ hỏi runtime hiện tại trước khi đề xuất chuyển. Em không xem virtual threads là thay thế mọi mô hình async hoặc reactive.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có tăng tốc công việc CPU-bound không?</h4><p>Không làm CPU có thêm năng lực tính toán; cần giới hạn parallelism theo tài nguyên CPU thực tế.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Lưu ý pinning được cải thiện ở các JDK sau; không khái quát hạn chế Java 21 cho mọi phiên bản.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html" target="_blank" rel="noopener noreferrer">Oracle · Virtual threads (Java 21)</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-virtual-threads">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-virtual-threads" data-note="virtual-threads" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="futures" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">13</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#futures">thenApply, thenCompose và thenCombine khác nhau thế nào?</a></h3>
+    <p class="cue">Biến đổi giá trị • nối bước phụ thuộc • ghép hai kết quả</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-futures">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: thenApply, thenCompose và thenCombine khác nhau thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-futures"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>CompletableFuture cho phép biểu diễn kết quả bất đồng bộ và ghép các bước xử lý. thenApply biến đổi một giá trị thành giá trị khác. thenCompose dùng khi bước tiếp theo trả về một future và phụ thuộc kết quả trước đó; nó giúp tránh future lồng nhau.</p>
+<p>Ví dụ, em lấy tài khoản rồi dùng tài khoản đó gọi kiểm tra điều kiện qua API khác. Bước sau phụ thuộc dữ liệu bước trước nên dùng thenCompose. Ngược lại, lấy hồ sơ khách hàng và cấu hình ngân hàng là hai tác vụ độc lập; em có thể khởi chạy cả hai rồi dùng thenCombine để ghép kết quả.</p>
+<p>Em không mặc định mọi callback đều chạy trên thread mới. Biến thể không có Async có thể chạy trên thread hoàn thành future; biến thể Async cần xem executor, và nếu không cung cấp thì thường dùng common pool. Với blocking I/O, em chọn executor phù hợp và tránh chiếm tài nguyên dùng chung ngoài ý muốn.</p>
+<p>Trade-off là chain quá dài hoặc join tùy tiện có thể khó đọc và vô tình chặn thread. Em chỉ song song hóa các bước độc lập; nghiệp vụ cần thứ tự hoặc cùng transaction không được tách async chỉ để có vẻ nhanh hơn.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>thenCombine có tự khởi chạy hai tác vụ không?</h4><p>Không. Nó kết hợp các stage đã có; cách tạo và lập lịch từng tác vụ quyết định việc chúng có chạy đồng thời hay không.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không truyền transaction hoặc ThreadLocal sang executor theo giả định tự động.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html" target="_blank" rel="noopener noreferrer">Oracle · CompletableFuture (Java 8)</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-futures">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-futures" data-note="futures" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="future-errors" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">14</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#future-errors">Xử lý exception và timeout với CompletableFuture</a></h3>
+    <p class="cue">Phục hồi có chủ đích → giữ ý nghĩa lỗi → hủy không đồng nghĩa dừng I/O</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-future-errors">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Xử lý exception và timeout với CompletableFuture">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-future-errors"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em tách quan sát kết quả với phục hồi lỗi. exceptionally xử lý nhánh lỗi và có thể trả giá trị thay thế. handle nhận cả kết quả lẫn exception để chuyển thành kết quả mới. whenComplete chủ yếu phù hợp cho quan sát hoặc cleanup; callback này vẫn có thể gây lỗi nếu chính nó ném exception.</p>
+<p>Trong payment, em không trả một giá trị thành công giả từ exceptionally chỉ để chain tiếp tục. Ví dụ, timeout ngân hàng phải được giữ là kết quả chưa xác định, khác với ngân hàng xác nhận từ chối. Em phân loại exception và giữ correlation ID để truy vết.</p>
+<p>Về timeout, em đặt deadline tổng và timeout cho I/O bên dưới. Hết thời gian chờ một future không chứng minh HTTP request đã dừng hoặc ngân hàng chưa xử lý. cancel cũng không tự bảo đảm tác động bên ngoài được hủy. Java 8 và các JDK mới hơn có API timeout khác nhau nên cần chọn đúng runtime.</p>
+<p>Trade-off của fallback là có thể che lỗi hoặc làm dữ liệu không chính xác. Em chỉ fallback khi ý nghĩa nghiệp vụ cho phép, ví dụ dùng cấu hình cache còn hợp lệ; không fallback một lệnh chuyển tiền chưa rõ kết quả thành thất bại chắc chắn rồi tự hoàn tiền.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>join khác get ở điểm nào đáng chú ý?</h4><p>Cả hai đều có thể chờ; chúng khác cách biểu diễn exception và get có biến thể chờ có timeout. Không đặt chúng tùy tiện trên thread cần giữ non-blocking.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>CompletableFuture không tự hủy một giao dịch ngân hàng.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html" target="_blank" rel="noopener noreferrer">Oracle · CompletableFuture (Java 8)</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-future-errors">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-future-errors" data-note="future-errors" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="locks" data-group="Java &amp; Concurrency" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">15</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#locks">Deadlock, ReentrantLock và ThreadLocal</a></h3>
+    <p class="cue">Lock ordering • cleanup finally • không để state request trên singleton</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-locks">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Deadlock, ReentrantLock và ThreadLocal">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-locks"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Deadlock xảy ra khi các thread giữ tài nguyên và chờ nhau theo chu trình mà không thể tiếp tục. Ví dụ, thread A khóa tài khoản 1 rồi chờ 2, còn thread B khóa 2 rồi chờ 1. Em giảm nguy cơ bằng thứ tự lấy khóa nhất quán và vùng khóa ngắn.</p>
+<p>ReentrantLock cung cấp thêm lựa chọn như tryLock và lấy khóa có thể bị interrupt; synchronized đơn giản và tự nhả monitor khi rời block. Nếu dùng lock thủ công, em unlock trong finally. Timeout lấy khóa giúp kiểm soát chờ, nhưng không thay thế thiết kế tránh chu trình.</p>
+<p>Khi điều tra, em lấy thread dump và xem thread state, stack cùng các lock đang chờ; với deadlock database thì xem lock và transaction phía database. Không phải mọi thread WAITING đều là lỗi, vì chờ task hoặc chờ I/O có thể là bình thường.</p>
+<p>ThreadLocal giữ dữ liệu theo thread, không tự theo request qua executor. Với thread pool, phải cleanup khi kết thúc để tránh rò dữ liệu hoặc giữ object lâu. Em không đặt currentUser hay currentTransfer trong field của Spring singleton. Trade-off của shared mutable state là làm reasoning và test concurrency khó hơn đáng kể.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>synchronized fair không?</h4><p>Không có bảo đảm fairness như lựa chọn fair của ReentrantLock; fairness cũng có chi phí và không tự bảo đảm SLA nghiệp vụ.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>JVM lock không phải distributed lock.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-locks">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-locks" data-note="locks" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="transactions" data-group="Spring &amp; Database" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">16</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#transactions">@Transactional hoạt động ra sao, rollback được đến đâu?</a></h3>
+    <p class="cue">Proxy → local transaction → rollback rules → external side effects</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-transactions">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: @Transactional hoạt động ra sao, rollback được đến đâu?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-transactions"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Trong cách dùng Spring phổ biến, proxy bao quanh lời gọi method để bắt đầu hoặc tham gia transaction, rồi commit hoặc rollback theo kết quả và cấu hình. Em xác định transaction manager đang quản lý tài nguyên nào, thường là database, thay vì hiểu annotation bao phủ mọi tác động trong method.</p>
+<p>Nếu method vừa ghi database vừa gọi ngân hàng, rollback database không tự đảo ngược giao dịch đã xảy ra ở ngân hàng. Vì vậy, em dùng local transaction ngắn cho các thay đổi nội bộ cần nguyên tử, kết hợp trạng thái bền vững và recovery cho giao tiếp bên ngoài.</p>
+<p>Trong proxy mode, self-invocation không đi qua proxy: một method gọi method khác trên chính object không làm annotation của method trong được áp dụng như một lời gọi qua proxy. Nếu method ngoài đã có transaction, method trong vẫn có thể chạy trong transaction đó; vấn đề là annotation riêng của nó không được intercept.</p>
+<p>Với cấu hình mặc định truyền thống của Spring, RuntimeException và Error gây rollback, checked exception thì cần xem rule. Nếu catch lỗi rồi không để proxy thấy hoặc không đánh dấu rollback, transaction có thể commit. Em viết test rollback thật và kiểm tra runtime/config, tránh coi annotation là bảo đảm tự động cho mọi trường hợp.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có giữ transaction lúc gọi HTTP ngân hàng không?</h4><p>Em tránh nếu có thể vì giữ lock và connection trong lúc chờ mạng. Tách bước phải đi kèm state machine, idempotency và recovery; chỉ bỏ annotation là chưa đủ.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Local rollback không phải distributed rollback.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html" target="_blank" rel="noopener noreferrer">Spring · Declarative transactions</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-transactions">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-transactions" data-note="transactions" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="propagation" data-group="Spring &amp; Database" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">17</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#propagation">REQUIRED, REQUIRES_NEW và rollback-only</a></h3>
+    <p class="cue">Cùng physical transaction hay transaction độc lập?</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-propagation">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: REQUIRED, REQUIRES_NEW và rollback-only">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-propagation"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Propagation xác định method tham gia transaction hiện có như thế nào. REQUIRED tham gia transaction đang chạy hoặc tạo mới nếu chưa có. REQUIRES_NEW tạo transaction độc lập và tạm ngưng transaction bên ngoài khi transaction manager hỗ trợ.</p>
+<p>Ví dụ, method ngoài gọi qua bean khác sang method dùng REQUIRES_NEW. Nếu method trong commit, rồi method ngoài rollback, dữ liệu đã commit ở transaction trong không tự mất. Điều này có thể phù hợp cho một số bản ghi vận hành, nhưng nguy hiểm nếu bản ghi đó khẳng định một nghiệp vụ chưa thực sự hoàn tất.</p>
+<p>Nếu dùng REQUIRED và một nhánh đánh dấu transaction rollback-only, việc bắt exception ở bên ngoài không nhất thiết xóa được trạng thái đó; khi commit có thể gặp UnexpectedRollbackException. Em xem ranh giới proxy và nguyên nhân rollback thay vì chỉ thêm try-catch.</p>
+<p>Trade-off của REQUIRES_NEW là có thể cần thêm connection trong khi transaction ngoài vẫn giữ tài nguyên, gây áp lực pool hoặc chờ lock. NESTED nếu được hỗ trợ thường liên quan savepoint, không giống transaction độc lập. Em chọn propagation từ yêu cầu nhất quán, không dùng REQUIRES_NEW như cách làm cho lỗi biến mất.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Gọi REQUIRES_NEW bằng this.method() có tác dụng không?</h4><p>Trong proxy mode thông thường, self-invocation bỏ qua interceptor nên không tạo transaction mới theo annotation của method đó.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Một transaction commit độc lập có thể làm dữ liệu phản ánh sai nghiệp vụ tổng thể.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-propagation">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-propagation" data-note="propagation" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="isolation" data-group="Spring &amp; Database" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">18</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#isolation">READ_COMMITTED, REPEATABLE_READ và SERIALIZABLE</a></h3>
+    <p class="cue">Invariant trước → anomaly → cơ chế DB → đo contention</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-isolation">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: READ_COMMITTED, REPEATABLE_READ và SERIALIZABLE">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-isolation"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Isolation mô tả mức độ các transaction đồng thời được nhìn thấy và ảnh hưởng lẫn nhau. READ_COMMITTED ngăn dirty read, nhưng hai lần đọc có thể thấy dữ liệu đã commit khác nhau. REPEATABLE_READ tăng bảo đảm cho việc đọc lặp lại; cách xử lý phantom và các loại read phụ thuộc database và cơ chế MVCC hoặc locking.</p>
+<p>SERIALIZABLE hướng đến kết quả tương đương một thứ tự thực thi tuần tự. Nó không nhất thiết có nghĩa database chạy từng transaction một. Database có thể dùng khóa hoặc phát hiện xung đột, và ứng dụng có thể phải retry transaction bị hủy.</p>
+<p>Trong bài trừ số dư, em bắt đầu từ invariant không âm. Một cập nhật có điều kiện trong transaction, kết hợp unique constraint và ghi ledger nguyên tử, có thể phù hợp mà không cần bật SERIALIZABLE toàn hệ thống. Với quy tắc phức tạp trên nhiều dòng dễ gặp write skew, em cân nhắc khóa rõ ràng hoặc SERIALIZABLE.</p>
+<p>Trade-off là giảm concurrency, tăng chờ hoặc số lần retry khi contention cao. Em xác nhận database, loại query, index và cấu hình thực tế. Retry toàn transaction chỉ an toàn nếu không vô tình lặp lại tác động ngoài database như gửi lệnh ngân hàng.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>REPEATABLE_READ có luôn ngăn phantom không?</h4><p>Không trả lời bằng một khẳng định áp dụng cho mọi database. Cần phân biệt chuẩn isolation với implementation, consistent read và locking read.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không chọn SERIALIZABLE chỉ vì nghiệp vụ có tiền.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html" target="_blank" rel="noopener noreferrer">MySQL 8.4 · InnoDB isolation levels</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-isolation">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-isolation" data-note="isolation" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="bean-life" data-group="Spring &amp; Database" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">19</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#bean-life">Spring bean lifecycle và BeanFactoryPostProcessor</a></h3>
+    <p class="cue">Bean definition trước • bean instance sau • shutdown có điều kiện</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-bean-life">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Spring bean lifecycle và BeanFactoryPostProcessor">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-bean-life"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Ở mức tổng quan, Spring đọc bean definitions, xử lý metadata, tạo instance, inject dependency và chạy các bước initialization. BeanPostProcessor có thể can thiệp quanh initialization, chẳng hạn để tạo proxy; @PostConstruct là một hook sau khi dependency đã được thiết lập.</p>
+<p>BeanFactoryPostProcessor làm việc với metadata của bean definitions trước giai đoạn khởi tạo bean thông thường. Nó khác BeanPostProcessor vốn làm việc với bean instance. Em không dùng BeanFactoryPostProcessor để vội lấy và khởi tạo các bean nghiệp vụ, vì có thể làm lệch lifecycle mong đợi.</p>
+<p>Ví dụ, em dùng initialization nhẹ để kiểm tra cấu hình bắt buộc. Em tránh gọi ngân hàng lâu hoặc chạy batch lớn trong @PostConstruct vì có thể khiến ứng dụng không khởi động được và khó vận hành. Công việc dài nên có lifecycle hoặc worker phù hợp, với trạng thái theo dõi được.</p>
+<p>Khi context đóng đúng cách, các destruction callbacks như @PreDestroy có thể dọn tài nguyên. Nhưng process bị kill cưỡng bức thì không bảo đảm hook chạy. Vì thế correctness của giao dịch không được phụ thuộc vào việc luôn chạy cleanup; dữ liệu và recovery phải chịu được crash ở bất kỳ thời điểm nào.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>@PostConstruct có chắc mọi bean khác đã sẵn sàng không?</h4><p>Không nên suy rộng như vậy. Nó thuộc initialization của bean; cần chọn hook phù hợp nếu công việc đòi toàn bộ ứng dụng đã sẵn sàng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Graceful shutdown hữu ích nhưng không thay thế crash recovery.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-bean-life">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-bean-life" data-note="bean-life" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="security-chain" data-group="Spring &amp; Database" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">20</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#security-chain">Spring Security xử lý request và SecurityContext thế nào?</a></h3>
+    <p class="cue">Filter chain → authentication → authorization → cleanup</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-security-chain">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Spring Security xử lý request và SecurityContext thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-security-chain"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Trong ứng dụng servlet, Spring Security làm việc thông qua một chuỗi filter trước controller. FilterChainProxy chọn SecurityFilterChain phù hợp với request. Các filter thực hiện những nhiệm vụ như xử lý credential, thiết lập thông tin xác thực và kiểm tra quyền theo cấu hình.</p>
+<p>Ví dụ, request mang bearer token. Thành phần xác thực kiểm tra token rồi tạo Authentication để lưu trong SecurityContext. Tầng authorization dùng danh tính và authorities đó để quyết định có được gọi chức năng hay không. Em vẫn kiểm tra quyền trên tài nguyên cụ thể, chẳng hạn tài khoản ngân hàng có thuộc người đang gọi không.</p>
+<p>SecurityContextHolder thường dùng ThreadLocal trong mô hình servlet, nên em không mặc định context tự đi theo công việc gửi sang executor. Khi cần truyền context, em dùng cơ chế hỗ trợ phù hợp và bảo đảm cleanup. Session-based và stateless token authentication cũng có cách lưu/khôi phục context khác nhau.</p>
+<p>OncePerRequestFilter hỗ trợ tránh thực thi trùng trong phạm vi dispatch được thiết kế, nhưng async và error dispatch có tùy chọn riêng. Em không tự viết một bộ xác minh JWT sơ sài nếu framework đã có resource-server support. Lỗi chưa xác thực thường khác với đã xác thực nhưng không đủ quyền.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có role USER là xem được mọi giao dịch của user khác không?</h4><p>Không. Role chỉ là một phần; cần object-level authorization dựa trên owner/tenant và policy cho từng tài nguyên.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Decode token không phải authentication; authentication không thay object-level authorization.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://docs.spring.io/spring-security/reference/servlet/architecture.html" target="_blank" rel="noopener noreferrer">Spring Security · Servlet architecture</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-security-chain">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-security-chain" data-note="security-chain" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="cache" data-group="Spring &amp; Database" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">21</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#cache">@Cacheable, Redis TTL, eviction và cache invalidation</a></h3>
+    <p class="cue">Cache dữ liệu phù hợp • nguồn sự thật rõ • stale và race</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-cache">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: @Cacheable, Redis TTL, eviction và cache invalidation">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-cache"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Cache giúp giảm latency và tải cho nguồn dữ liệu chính. Với cache-aside, ứng dụng kiểm tra cache, nếu miss thì đọc database và ghi vào cache. @Cacheable hỗ trợ bao quanh lời gọi method theo cơ chế Spring cache; @CacheEvict dùng để loại bỏ entry theo chính sách cập nhật.</p>
+<p>Em thiết kế key có đủ phạm vi như tenant, đối tượng và phiên bản dữ liệu, rồi xác định TTL theo mức độ chấp nhận stale. TTL là thời hạn entry, còn eviction do giới hạn memory là một lý do khác khiến key bị loại. Không nên giả định key còn TTL thì chắc vẫn tồn tại.</p>
+<p>Ví dụ, cấu hình hiển thị hoặc danh sách ngân hàng có thể cache; nhưng em không dùng số dư cache cũ làm căn cứ cuối cùng cho phép rút tiền. Khi ghi database rồi invalidate cache, vẫn có race giữa reader và writer, nên cần đánh giá consistency thực sự, thay vì nghĩ thêm annotation là xong.</p>
+<p>Write-through cập nhật qua lớp cache đồng bộ với nơi lưu theo thiết kế; write-behind ghi bền vững sau, có rủi ro mất hoặc đảo thứ tự nếu không kiểm soát. Em dùng TTL jitter, single-flight hoặc refresh có giới hạn để giảm stampede, và thiết kế fallback khi Redis lỗi để không đánh sập database.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Xóa cache trước hay sau commit?</h4><p>Thường cần gắn với commit thành công, nhưng thứ tự đó không tự loại mọi race. Em phân tích phiên bản dữ liệu và cơ chế invalidation nếu cần bảo đảm mạnh hơn.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Cache Redis không phải nguồn sự thật mặc định cho tiền.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-cache">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-cache" data-note="cache" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="rest" data-group="Spring &amp; Database" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">22</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#rest">REST versioning, error handling và HATEOAS</a></h3>
+    <p class="cue">Hợp đồng ổn định → lỗi có ý nghĩa → tra cứu kết quả</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-rest">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: REST versioning, error handling và HATEOAS">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-rest"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em thiết kế API từ tài nguyên và hành vi nghiệp vụ, với request validation, quyền truy cập và mã lỗi ổn định. Với giao dịch bất đồng bộ, response nên trả transaction ID cùng trạng thái; client có API tra cứu thay vì đoán kết quả từ việc request có timeout hay không.</p>
+<p>Em phân biệt HTTP status với business error code. @ControllerAdvice có thể chuẩn hóa lỗi, gồm code, thông điệp phù hợp và correlation ID, nhưng không trả stack trace, token hoặc dữ liệu nhạy cảm cho client. Lỗi bị từ chối chắc chắn cần khác với kết quả đang xác minh để client không retry sai.</p>
+<p>Về versioning, em ưu tiên thay đổi tương thích như thêm field tùy chọn khi hợp đồng cho phép. Nếu thay đổi ngữ nghĩa hoặc cấu trúc phá vỡ client, em có kế hoạch phiên bản mới và thời gian chuyển đổi, chẳng hạn qua URL version hoặc header theo quy ước thống nhất.</p>
+<p>HATEOAS bổ sung các liên kết hoặc hành động có thể thực hiện từ trạng thái tài nguyên. Ví dụ, giao dịch pending có link tra cứu. Nó có thể giúp client khám phá luồng, nhưng tăng chi phí hợp đồng và không bắt buộc cho mọi API. Em ưu tiên trạng thái chính xác, idempotency và tài liệu rõ trước.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Frontend timeout nên báo gì?</h4><p>Nếu server có thể đã nhận giao dịch, UI báo đang xác minh và dùng transaction ID/idempotency key để truy vấn hoặc retry đúng hợp đồng, không tạo một ý định thanh toán mới.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>HTTP 200 không tự chứng minh nghiệp vụ tiền đã hoàn tất.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-rest">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-rest" data-note="rest" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="idempotency" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">23</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#idempotency">Thiết kế idempotency key cho payment API</a></h3>
+    <p class="cue">Scope + payload fingerprint + unique constraint + trạng thái bền vững</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-idempotency">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Thiết kế idempotency key cho payment API">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-idempotency"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Idempotency nghĩa là lặp lại cùng một yêu cầu không tạo thêm tác động nghiệp vụ ngoài lần xử lý đầu. Em xác định key theo một ý định giao dịch và scope rõ ràng, chẳng hạn user hoặc merchant cộng loại thao tác. Client giữ nguyên key khi retry vì chưa biết kết quả.</p>
+<p>Server lưu key, fingerprint của request đã chuẩn hóa và transaction ID. Unique constraint tại database giúp xử lý hai request đồng thời. Cùng key và cùng payload thì trả giao dịch hoặc kết quả hiện có; cùng key nhưng khác số tiền hay tài khoản đích thì từ chối do xung đột hợp đồng.</p>
+<p>Em ghi nhận yêu cầu và cập nhật nghiệp vụ liên quan trong cùng transaction hoặc một giao thức bền vững rõ ràng. Nếu chỉ check Redis rồi tạo giao dịch, crash hoặc race ở giữa có thể tạo lỗ hổng. Cache có thể tăng tốc tra cứu nhưng không thay thế lớp bảo vệ bền vững.</p>
+<p>Khi request đầu vẫn xử lý, request sau nhận cùng transaction ID và trạng thái phù hợp. Retention của key phải bao phủ cửa sổ retry/replay và quy định nghiệp vụ. Trade-off là tốn storage và phải xử lý trạng thái dang dở; không nên xóa key ngay khi hoàn tất rồi vô tình cho retry muộn chạy lại.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có key ở API là đủ chống trùng toàn hệ thống chưa?</h4><p>Chưa. Worker, callback, ledger posting và lệnh ngân hàng cần định danh và cơ chế chống tác động trùng tương ứng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Idempotency key phải giữ nguyên cho retry cùng ý định, không sinh mới mỗi lần bấm lại.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-idempotency">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-idempotency" data-note="idempotency" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="balance" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">24</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#balance">Hai request cùng rút tiền: bảo vệ số dư thế nào?</a></h3>
+    <p class="cue">Check và update nguyên tử • hold • ledger cùng transaction</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-balance">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Hai request cùng rút tiền: bảo vệ số dư thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-balance"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em không đọc số dư về Java rồi kiểm tra và ghi lại một cách rời rạc, vì hai request có thể cùng thấy số dư cũ. Em cần bảo vệ invariant ngay tại nơi dữ liệu được quản lý.</p>
+<p>Một cách là cập nhật có điều kiện trong database: giảm available và tăng held chỉ khi available còn đủ. Em kiểm tra số dòng được cập nhật và đặt việc giữ tiền, tạo transfer và ghi nhận sự kiện cần phát trong cùng local transaction. Nếu một bước thất bại, các thay đổi nội bộ rollback cùng nhau.</p>
+<p>Một lựa chọn khác là SELECT FOR UPDATE rồi kiểm tra và cập nhật trong transaction ngắn. Optimistic locking dùng version phù hợp khi contention thấp hơn, nhưng xung đột cao có thể làm retry nhiều. Em chọn dựa trên workload, database và yêu cầu nghiệp vụ chứ không mặc định một cách luôn tốt nhất.</p>
+<p>Sau khi đã giữ tiền, gọi ngân hàng ở ngoài transaction dài. Thành công thì chốt hold theo mô hình ledger; thất bại chắc chắn thì release một lần. Kết quả chưa rõ không tự release. Em thêm unique constraint theo tác động nghiệp vụ để callback trùng không chốt hoặc trả tiền hai lần.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Redis distributed lock có đủ không?</h4><p>Không nên là lớp bảo vệ duy nhất: lease có thể hết hạn khi worker còn chạy. Invariant vẫn cần constraint/transaction hoặc fencing phù hợp ở tài nguyên được bảo vệ.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Khóa JVM không bảo vệ nhiều pod; lock có TTL không làm mọi thao tác phía sau tự an toàn.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-balance">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-balance" data-note="balance" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="outbox" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">25</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#outbox">Database commit nhưng publish event thất bại thì sao?</a></h3>
+    <p class="cue">Outbox nguyên tử → relay có retry → consumer dedupe</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-outbox">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Database commit nhưng publish event thất bại thì sao?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-outbox"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Đây là vấn đề dual write: database và broker là hai hệ thống khác nhau. Nếu em commit nghiệp vụ rồi publish, process có thể chết ở giữa; nếu publish trước rồi database rollback, consumer có thể thấy một sự kiện không tương ứng dữ liệu đã commit.</p>
+<p>Transactional outbox ghi thay đổi nghiệp vụ và bản ghi event trong cùng database transaction. Relay hoặc CDC đưa event từ outbox sang broker. Nếu publish lỗi thì có thể gửi lại vì ý định phát event vẫn còn bền vững trong database.</p>
+<p>Nhưng relay có thể publish thành công rồi chết trước khi đánh dấu đã gửi, nên duplicate vẫn xảy ra. Consumer cần event ID hoặc định danh tác động nghiệp vụ, và nếu cùng database thì ghi nhận đã xử lý nguyên tử với cập nhật nghiệp vụ. Nếu tác động là gọi ngân hàng, còn cần idempotency hoặc inquiry theo hợp đồng của ngân hàng.</p>
+<p>Em theo dõi tuổi event chưa phát, backlog, số lần lỗi và có quy trình replay. Trade-off là thêm relay, storage và vận hành. Outbox giải quyết không bỏ sót ý định đã commit trong giả định lưu trữ phù hợp; nó không tự biến toàn bộ hệ thống thành exactly-once.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Consumer ghi DB xong nhưng chưa ack thì chết?</h4><p>Message có thể được giao lại; bản ghi dedupe và hiệu ứng nghiệp vụ phải được commit cùng nhau để lần sau không áp dụng lần hai.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không đánh dấu đã gửi trước khi publish rồi chấp nhận mất event.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-outbox">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-outbox" data-note="outbox" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="messaging" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">26</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#messaging">Kafka, RabbitMQ, ordering và exactly-once</a></h3>
+    <p class="cue">Phạm vi bảo đảm → key → replay → external side effects</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-messaging">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Kafka, RabbitMQ, ordering và exactly-once">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-messaging"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em chọn broker theo nhu cầu thay vì theo tên công nghệ. Kafka phù hợp với log sự kiện có retention và replay, consumer group và partition để scale. RabbitMQ thường thuận tiện cho routing và work queue với acknowledgment; bảo đảm cụ thể vẫn phụ thuộc cấu hình và loại queue.</p>
+<p>Pub/sub giúp nhiều nhóm xử lý cùng sự kiện, còn competing consumers chia việc trong một nhóm. Với Kafka, ordering nằm trong partition, không phải toàn topic. Nếu cần tuần tự theo tài khoản, em cân nhắc account ID làm key, đồng thời kiểm soát concurrency trong consumer để không tự phá thứ tự xử lý.</p>
+<p>At-least-once có thể giao lại message khi lỗi, nên consumer cần idempotent. Các cơ chế exactly-once của Kafka có phạm vi nhất định; cập nhật database bên ngoài hoặc gọi API ngân hàng không tự được bao phủ. Em luôn hỏi exactly once đối với delivery, processing hay business effect.</p>
+<p>DLQ lưu những message không xử lý được sau chính sách phù hợp, nhưng phải có người hoặc công cụ xử lý. Replay cần giữ event ID, xét thứ tự và phiên bản schema. Trade-off của ordering chặt là giảm khả năng song song và có thể tạo hot partition.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Có thể tăng consumer vô hạn để tăng throughput không?</h4><p>Không. Trong một consumer group Kafka, số partition giới hạn số consumer chủ động nhận partition; downstream và ordering cũng giới hạn năng lực.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Notification failure không được kích hoạt lại giao dịch tiền đã thành công.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://kafka.apache.org/41/design/design/" target="_blank" rel="noopener noreferrer">Apache Kafka · Delivery semantics</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-messaging">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-messaging" data-note="messaging" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="saga-ledger" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">27</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#saga-ledger">Saga, double-entry ledger và event sourcing</a></h3>
+    <p class="cue">Compensation ≠ rollback • ledger ≠ mặc định event sourcing</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-saga-ledger">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Saga, double-entry ledger và event sourcing">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-saga-ledger"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Saga chia một nghiệp vụ qua nhiều bước local transaction và có hành động bù khi một bước không thể hoàn tất. Compensation là một nghiệp vụ mới để bù tác động, không phải quay ngược thời gian như database rollback. Nó cũng có thể thất bại và cần retry hoặc xử lý ngoại lệ.</p>
+<p>Ví dụ, chuyển tiền ra ngân hàng đã thành công thì không thể chỉ rollback database ví để coi như chưa xảy ra. Có thể phải tạo một nghiệp vụ hoàn tiền riêng nếu đối tác và quy định cho phép. Vì vậy state machine cần phân biệt thất bại chắc chắn với chưa biết kết quả.</p>
+<p>Double-entry ledger ghi bút toán cân bằng giữa các tài khoản theo từng currency. Em giữ audit trail và sửa sai bằng bút toán đảo hoặc điều chỉnh có tham chiếu, không sửa xóa lịch sử tùy tiện. Available balance và held amount là mô hình phục vụ quyết định chi tiêu, phải được cập nhật nhất quán với nguồn sự thật đã chọn.</p>
+<p>Event sourcing lấy chuỗi event làm nguồn để dựng trạng thái, nhưng có ledger không đồng nghĩa mọi service phải event-source. Event sourcing thêm replay, versioning và projection consistency. Em chỉ chọn khi lợi ích truy vết và tái dựng xứng đáng với độ phức tạp, không coi đó là điều kiện bắt buộc để xây ví.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Ledger có nên sửa dòng cũ để khớp ngân hàng không?</h4><p>Không sửa tùy tiện để che sai lệch. Giữ bằng chứng, đối soát nguyên nhân và tạo adjustment có phê duyệt cùng liên kết tới bút toán gốc.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Saga không bảo đảm compensation luôn thành công ngay lập tức.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-saga-ledger">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-saga-ledger" data-note="saga-ledger" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="resilience" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">28</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#resilience">Timeout, retry, circuit breaker và bulkhead</a></h3>
+    <p class="cue">Giới hạn chờ • retry an toàn • cô lập lỗi • không bão retry</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-resilience">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Timeout, retry, circuit breaker và bulkhead">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-resilience"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Timeout giới hạn thời gian chờ. Retry thử lại một lỗi có khả năng tạm thời. Circuit breaker tạm ngăn gọi downstream khi dấu hiệu lỗi vượt ngưỡng, rồi cho một số lời gọi thăm dò khi half-open. Bulkhead tách tài nguyên để lỗi của một nhóm không chiếm hết năng lực của nhóm khác.</p>
+<p>Với ngân hàng, em đặt deadline tổng và timeout từng lần gọi, retry có giới hạn với exponential backoff và jitter. Em chỉ retry lệnh có cơ chế an toàn theo hợp đồng, và không retry lỗi nghiệp vụ như tài khoản không hợp lệ theo cùng cách lỗi mạng.</p>
+<p>Em tránh nhiều tầng cùng retry vì số lần gọi có thể nhân lên. Với Resilience4j, em xác định thứ tự kết hợp decorator, loại lỗi được tính vào breaker và giới hạn concurrency. Breaker mở không có nghĩa giao dịch trước đó chắc chắn thất bại; kết quả chưa rõ vẫn phải được inquiry hoặc đối soát.</p>
+<p>Trade-off là fail-fast có thể từ chối một số request khi downstream đang hồi phục, còn queue quá lớn làm latency tăng. Em theo dõi error rate, slow-call rate, pending age và tách pool theo ngân hàng. Fallback cho giao dịch tiền không được trả thành công giả hoặc tự hoàn tiền khi chưa có căn cứ.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Breaker có thay timeout không?</h4><p>Không. Breaker đánh giá tình trạng theo thống kê; một lời gọi được phép đi qua vẫn cần deadline và timeout riêng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Một status timeout không phải kết luận nghiệp vụ thất bại.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-resilience">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-resilience" data-note="resilience" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="cap-scale" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">29</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#cap-scale">CAP, scaling, index và sharding trong payment</a></h3>
+    <p class="cue">Theo từng thao tác • đo trước • shard sau</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-cap-scale">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: CAP, scaling, index và sharding trong payment">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-cap-scale"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>CAP nói về đánh đổi consistency và availability khi có network partition trong mô hình phân tán. Em không gắn nhãn CP hay AP cho toàn bộ payment system. Khi không xác minh được quyền ghi số dư nhất quán, em có thể dừng hoặc giữ pending thao tác chi tiền; lịch sử hoặc thông báo có thể chấp nhận dữ liệu chậm hơn.</p>
+<p>Consistency trong CAP cũng không đồng nghĩa mọi nghĩa của chữ consistency trong ACID. Em cần nói rõ bảo đảm mà thao tác yêu cầu. Giảm khả năng ghi khi partition là một quyết định bảo vệ invariant, không có nghĩa hệ thống phải ngừng tất cả API đọc.</p>
+<p>Về scale, em đo bottleneck trước: query plan, index, lock, connection pool, CPU, queue và downstream. Scale up đơn giản nhưng có giới hạn; scale out app stateless giúp phân tải nhưng không tự scale database hay ngân hàng. Đọc lịch sử có thể dùng index phù hợp và cursor pagination trước khi nghĩ đến sharding.</p>
+<p>Hash sharding thường phân bố tải nhưng khó range query và reshard; range sharding thuận truy vấn theo khoảng nhưng có thể tạo hotspot. Shard theo account làm giao dịch giữa hai account khó hơn. Em chọn khi số liệu chứng minh nhu cầu, với routing, migration và recovery rõ ràng.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>100K concurrent users có phải 100K TPS không?</h4><p>Không. Cần tỷ lệ user đang thao tác, số request trên mỗi người mỗi giây và read/write mix; số kết nối đồng thời không đồng nhất số giao dịch mỗi giây.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không viện CAP để chấp nhận chi vượt số dư.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-cap-scale">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-cap-scale" data-note="cap-scale" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="oauth" data-group="Bảo mật &amp; Identity" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">30</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#oauth">OAuth2, OpenID Connect và JWT khác nhau thế nào?</a></h3>
+    <p class="cue">Ủy quyền • danh tính • định dạng token</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-oauth">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: OAuth2, OpenID Connect và JWT khác nhau thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-oauth"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>OAuth2 là framework ủy quyền: một client được cấp quyền truy cập tài nguyên trong phạm vi cho phép. OpenID Connect xây thêm lớp danh tính trên OAuth2, phục vụ việc xác thực người dùng. JWT là định dạng token, nên không cùng cấp khái niệm với OAuth2.</p>
+<p>Em phân biệt authentication là xác định chủ thể, còn authorization là quyết định chủ thể được làm gì. Trong tích hợp liên quan tài khoản ngân hàng, có token hợp lệ chưa đủ; còn phải kiểm tra scope, audience và quyền với tài khoản cụ thể.</p>
+<p>Với Authorization Code cùng PKCE, client tạo verifier và challenge, đưa challenge vào bước xin authorization. Sau khi nhận code, client đổi code cùng verifier tại token endpoint. Authorization server kiểm tra quan hệ giữa chúng để giảm nguy cơ sử dụng code bị đánh cắp. Em xác minh redirect URI, liên kết response với phiên bắt đầu flow và dùng state/nonce đúng mục đích của giao thức.</p>
+<p>Client Credentials phù hợp cho một số giao tiếp service-to-service, đại diện quyền của client. Nó không tự thay thế consent của người dùng. Em không tự xây cơ chế OAuth từ đầu nếu có giải pháp tiêu chuẩn phù hợp; triển khai sai callback hoặc token validation có thể phá vỡ bảo mật dù tên flow đúng.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>ID token có dùng thay access token gọi mọi API không?</h4><p>Không. ID token cung cấp thông tin xác thực cho client theo audience của nó; API cần loại token và audience được thiết kế cho resource server đó.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>OAuth2 không phải định dạng token; JWT không mặc định là token đăng nhập.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://www.rfc-editor.org/rfc/rfc9700.html" target="_blank" rel="noopener noreferrer">IETF · RFC 9700, OAuth2 security</a> · <a href="https://openid.net/specs/openid-connect-core-1_0.html" target="_blank" rel="noopener noreferrer">OpenID Foundation · OpenID Connect Core</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-oauth">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-oauth" data-note="oauth" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="jwt" data-group="Bảo mật &amp; Identity" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">31</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#jwt">Access token, refresh token và kiểm tra JWT</a></h3>
+    <p class="cue">Verify, không chỉ decode • vòng đời • revocation</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-jwt">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Access token, refresh token và kiểm tra JWT">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-jwt"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Access token dùng để truy cập tài nguyên trong phạm vi và thời gian được cấp. Refresh token được dùng với authorization server để xin access token mới; nó không nên được gửi như credential đến các resource API thông thường.</p>
+<p>JWT thường được ký, không mặc định được mã hóa. Payload có thể đọc được, nên không đưa secret vào rồi nghĩ chữ ký sẽ che giấu nó. Khi nhận token, em dùng thư viện tin cậy để kiểm tra signature với khóa đáng tin, allowlist thuật toán, issuer, audience và thời hạn cùng các claim liên quan.</p>
+<p>Em quản lý token theo môi trường client. Backend cần bảo vệ secret và hạn chế quyền; ứng dụng browser cần cân nhắc XSS, CSRF và mô hình BFF/cookie phù hợp. Nếu dùng cookie, HttpOnly, Secure và SameSite là các lớp bảo vệ có vai trò riêng, không phải giải pháp xóa hết mọi rủi ro.</p>
+<p>JWT tự chứa claim làm validation cục bộ thuận tiện nhưng thu hồi tức thời khó hơn. Em có thể kết hợp access token ngắn hạn, refresh token rotation và cơ chế revocation theo yêu cầu. Logout không tự khiến mọi access token đã phát hành biến mất, nên thiết kế session phải nói rõ thời gian và phạm vi thu hồi.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Token bị lộ thì đổi chữ ký có giải quyết ngay không?</h4><p>Cần quy trình ứng phó gồm thu hồi, rotation và giới hạn tác động. Đổi key có thể ảnh hưởng nhiều token và các cache verifier; không phải nút bấm đơn giản cho mọi trường hợp.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không log bearer token hoặc refresh token.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://www.rfc-editor.org/rfc/rfc8725.html" target="_blank" rel="noopener noreferrer">IETF · RFC 8725, JWT best practices</a> · <a href="https://www.rfc-editor.org/rfc/rfc9700.html" target="_blank" rel="noopener noreferrer">IETF · RFC 9700, OAuth2 security</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-jwt">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-jwt" data-note="jwt" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="sso" data-group="Bảo mật &amp; Identity" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">32</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#sso">SSO: SAML, OIDC và session qua nhiều ứng dụng</a></h3>
+    <p class="cue">IdP session ≠ app session ≠ access token</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-sso">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: SSO: SAML, OIDC và session qua nhiều ứng dụng">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-sso"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>SSO cho phép người dùng tận dụng phiên đăng nhập tại identity provider để truy cập nhiều ứng dụng mà không phải nhập credential lặp lại trong điều kiện phù hợp. SAML thường dùng assertion XML trong federated identity, còn OpenID Connect cung cấp lớp xác thực dựa trên OAuth2 và token/claim theo giao thức của nó.</p>
+<p>Em lựa chọn theo hệ sinh thái và khả năng của identity provider, không chỉ theo tiêu chí mới hay cũ. Một tổ chức dùng SAML ổn định có thể tiếp tục tích hợp SAML; ứng dụng web hoặc mobile dùng OIDC cần triển khai flow và validation đúng.</p>
+<p>Em phân biệt phiên ở IdP với session của từng ứng dụng. Sau SSO, mỗi ứng dụng có thể tạo session riêng; các backend service dùng access token phù hợp khi gọi API. Không cần và không nên mặc định tất cả service đọc cùng một session object hay chia sẻ cookie tùy tiện giữa các domain.</p>
+<p>Khi logout, phải xác định chỉ logout ứng dụng hiện tại hay toàn bộ hệ sinh thái, và cơ chế front-channel/back-channel hoặc thu hồi nào được hỗ trợ. Trade-off của token tự xác minh là giảm phụ thuộc trực tiếp nhưng khó thu hồi ngay; session store tập trung giúp kiểm soát nhưng thêm phụ thuộc vận hành.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>IdP down thì user đang đăng nhập có dùng tiếp không?</h4><p>Tùy thời hạn token, phiên ứng dụng và cách validation. Không suy ra tự động là tất cả phải logout hoặc tất cả vẫn hoạt động vô hạn.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>SSO không đồng nghĩa một session dùng chung cho mọi microservice.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://openid.net/specs/openid-connect-core-1_0.html" target="_blank" rel="noopener noreferrer">OpenID Foundation · OpenID Connect Core</a> · <a href="https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html" target="_blank" rel="noopener noreferrer">OASIS · SAML 2.0 technical overview</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-sso">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-sso" data-note="sso" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="crypto" data-group="Bảo mật &amp; Identity" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">33</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#crypto">Hash, encryption, HMAC và digital signature</a></h3>
+    <p class="cue">Bí mật • toàn vẹn • nguồn gửi • khóa nào làm gì</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-crypto">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Hash, encryption, HMAC và digital signature">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-crypto"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Encryption bảo vệ tính bí mật: bên có khóa phù hợp có thể giải mã nội dung. Hash tạo giá trị tóm tắt và không được thiết kế để giải mã ngược, nhưng hash thuần không chứng minh ai gửi vì người sửa dữ liệu cũng có thể tính hash mới.</p>
+<p>HMAC dùng shared secret để kiểm tra tính toàn vẹn và xác thực trong phạm vi các bên biết secret. Digital signature dùng private key để ký và public key để kiểm tra. Bên verify không cần giữ private key, nhưng phải tin đúng public key và quản lý chứng thư hoặc phân phối khóa đúng.</p>
+<p>Ví dụ, callback ngân hàng có chữ ký trên payload. Em kiểm tra đúng tập trường và cách canonicalization theo hợp đồng, vì chỉ đổi cách biểu diễn JSON cũng có thể làm khác byte được ký. Chữ ký hợp lệ chưa ngăn được một thông điệp cũ bị gửi lại, nên còn cần freshness và chống tác động trùng.</p>
+<p>Em dùng thư viện và thuật toán tiêu chuẩn, không tự chế crypto. Password cần cơ chế password hashing có salt và work factor phù hợp, không lưu bằng hash nhanh đơn thuần. Trade-off quan trọng nằm ở quản lý khóa, rotation, quyền truy cập và khả năng điều tra khi khóa bị lộ, không chỉ tên thuật toán.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>HMAC có chứng minh bên nào trong hai bên shared secret đã ký không?</h4><p>Không phân biệt được một cách mật mã nếu cả hai đều biết cùng secret. Đó là khác biệt quan trọng với mô hình chữ ký bất đối xứng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Chữ ký số không che giấu nội dung; hash không phải mã hóa.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-crypto">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-crypto" data-note="crypto" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="tls-storage" data-group="Bảo mật &amp; Identity" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">34</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#tls-storage">AES-256 at rest, TLS in transit và mTLS</a></h3>
+    <p class="cue">Thuật toán + mode + key management + trust boundary</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-tls-storage">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: AES-256 at rest, TLS in transit và mTLS">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-tls-storage"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Mã hóa at rest bảo vệ dữ liệu lưu trữ, ví dụ database, object storage hoặc backup. Mã hóa in transit bảo vệ dữ liệu trên đường truyền. Hai lớp này bổ sung nhau; có HTTPS không bảo vệ một bản backup bị lộ, còn mã hóa ổ đĩa không ngăn app có quyền đọc rồi log dữ liệu ra ngoài.</p>
+<p>Với AES-256, em không chỉ nhìn độ dài khóa. Cần mode phù hợp như authenticated encryption, quản lý nonce đúng yêu cầu, bảo vệ khóa bằng KMS hoặc HSM khi phù hợp và kiểm soát quyền giải mã. Envelope encryption tách data key với key bảo vệ nó, giúp vận hành và rotation linh hoạt hơn.</p>
+<p>TLS 1.2 hoặc 1.3 cần cấu hình phù hợp, kiểm tra certificate, hostname và trust chain. Không tắt certificate validation chỉ để tích hợp chạy được. mTLS bổ sung xác thực client bằng certificate, trong khi TLS server-auth thông thường chủ yếu xác thực server với client.</p>
+<p>Khi TLS kết thúc ở gateway, em kiểm tra cả đường truyền nội bộ sau đó. Trade-off là quản lý certificate, rotation và compatibility. Payload signing vẫn có thể cần để kiểm tra thông điệp ở tầng ứng dụng qua các trung gian; em xác định threat model thay vì coi một lớp mã hóa bảo vệ tất cả.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Database encrypted rồi thì SQL injection có đọc được dữ liệu không?</h4><p>Có thể, nếu truy vấn đi qua ứng dụng hoặc database có quyền giải mã. At-rest encryption không thay input handling, authorization và giới hạn quyền.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không lưu key cạnh ciphertext rồi coi như đã giải quyết quản lý khóa.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://www.rfc-editor.org/rfc/rfc8446.html" target="_blank" rel="noopener noreferrer">IETF · RFC 8446, TLS 1.3</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-tls-storage">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-tls-storage" data-note="tls-storage" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="pci" data-group="Bảo mật &amp; Identity" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">35</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#pci">PCI DSS, tokenization và audit logging</a></h3>
+    <p class="cue">Giảm dữ liệu nhạy cảm • phân loại đúng • audit không lộ secret</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-pci">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: PCI DSS, tokenization và audit logging">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-pci"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em hiểu PCI DSS là tiêu chuẩn bảo vệ dữ liệu tài khoản thẻ trong phạm vi áp dụng, không phải một thư viện hay một lần chạy scanner là hoàn tất. Trong thiết kế, em ưu tiên giảm dữ liệu thẻ mà hệ thống phải tiếp xúc và lưu trữ, dùng nhà cung cấp phù hợp và xác định scope với đội bảo mật.</p>
+<p>Tokenization thay dữ liệu nhạy cảm bằng token; khả năng ánh xạ hoặc phục hồi do hệ thống tokenization quản lý. Nó khác encryption là biến đổi dữ liệu bằng khóa để giải mã. Tokenization có thể giúp giảm exposure, nhưng không tự loại mọi hệ thống ra khỏi scope, nhất là nơi có thể detokenize.</p>
+<p>PAN không phải luôn bị cấm lưu, nhưng nếu cần lưu thì phải đáp ứng yêu cầu bảo vệ và retention phù hợp. Với hệ thống merchant thông thường, sensitive authentication data như CVV, full track hoặc PIN block không được giữ sau authorization, kể cả mã hóa; các ngoại lệ chuyên biệt cho issuing cần đánh giá riêng.</p>
+<p>Audit log ghi ai làm gì, khi nào, với tài nguyên nào và kết quả ra sao; phải hạn chế sửa, kiểm soát truy cập và theo dõi. Em không log token, CVV hay raw payload nhạy cảm. Log giúp điều tra nhưng không thay ledger hoặc đối soát; retention và masking phải theo policy và phạm vi thực tế.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Mask PAN trên UI có đủ bảo vệ database không?</h4><p>Không. Masking hiển thị và bảo vệ dữ liệu lưu trữ là hai vấn đề khác nhau; backup, log và export cũng phải được xét.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Tránh câu tuyệt đối &#x27;PCI cấm lưu mọi dữ liệu thẻ&#x27;; phân biệt PAN với SAD.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://www.pcisecuritystandards.org/faqs/for-pci-dss-why-is-storage-of-sensitive-authentication-data-sad-after-authorization-not-permitted-even-when-there-are-no-primary-account-numbers-pans-in-an-environment/" target="_blank" rel="noopener noreferrer">PCI SSC · Sensitive authentication data after authorization</a> · <a href="https://blog.pcisecuritystandards.org/protecting-cardholder-data-with-encryption" target="_blank" rel="noopener noreferrer">PCI SSC · Protecting cardholder data</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-pci">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-pci" data-note="pci" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="rate-limit" data-group="Giao dịch &amp; Distributed" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">36</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#rate-limit">Token Bucket, Leaky Bucket và Redis rate limiter</a></h3>
+    <p class="cue">Burst budget • tốc độ xử lý • atomic update • lỗi Redis</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-rate-limit">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Token Bucket, Leaky Bucket và Redis rate limiter">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-rate-limit"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Rate limiter kiểm soát số yêu cầu theo thời gian để bảo vệ tài nguyên và thực thi quota. Token Bucket có sức chứa và tốc độ bổ sung token; request tiêu thụ token nên có thể cho phép burst trong giới hạn. Leaky Bucket ở dạng shaping queue đưa công việc ra với tốc độ đều và queue hữu hạn; cũng có biến thể dùng để meter/reject mà không thực sự giữ request.</p>
+<p>Với API payment, em xác định giới hạn theo user, merchant, IP và ngân hàng ở các tầng phù hợp. IP không đủ đại diện người dùng vì có NAT và proxy. Tác động trừ tiền vẫn cần idempotency riêng; rate limit không phải chống duplicate về nghiệp vụ.</p>
+<p>Trong Redis, em dùng thao tác nguyên tử như Lua script để đọc thời điểm, refill token, quyết định và cập nhật trong một lượt, thay vì GET rồi SET rời rạc. Em xác định nguồn thời gian, TTL an toàn và key scope. Với cluster, thao tác nhiều key phải xét hash slot và tránh hot key.</p>
+<p>Khi hết quota, API trả lỗi và hướng dẫn retry phù hợp. Redis lỗi thì fail-open hay fail-closed tùy rủi ro: thao tác nhạy cảm có thể chặn hoặc dùng giới hạn dự phòng chặt, còn API đọc có thể cho qua có kiểm soát. Em thừa nhận giới hạn consistency khi failover và không dùng limiter làm invariant số dư.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Rate limit khác concurrency limit không?</h4><p>Rate limit giới hạn theo thời gian; concurrency limit giới hạn số công việc đang xử lý. Ngân hàng chậm có thể làm concurrency tăng dù tốc độ request không đổi.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>TTL key không được làm reset quota sớm và cho burst ngoài thiết kế.</p></div>
+    <p class="card-sources">Đọc gốc: <a href="https://redis.io/docs/latest/develop/use-cases/rate-limiter/" target="_blank" rel="noopener noreferrer">Redis · Rate limiting</a></p></div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-rate-limit">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-rate-limit" data-note="rate-limit" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="testing" data-group="Vận hành &amp; Chất lượng" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">37</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#testing">Test hệ thống giao dịch tiền như thế nào?</a></h3>
+    <p class="cue">Invariant → failure injection → duplicate/concurrency → recovery</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-testing">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Test hệ thống giao dịch tiền như thế nào?">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-testing"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Em bắt đầu từ invariant và các ranh giới lỗi, không chỉ test endpoint trả 200. Unit test kiểm tra quy tắc nghiệp vụ, state transition và mapping. Integration test kiểm tra transaction, constraint và broker/database behavior; contract test bảo vệ giả định với ngân hàng.</p>
+<p>Những tình huống quan trọng là hai request đồng thời cùng idempotency key, hai yêu cầu rút khác nhau tranh số dư, ngân hàng đã xử lý nhưng response mất, callback trùng hoặc đến trước response, và consumer chết sau DB commit nhưng trước ack.</p>
+<p>Em dùng stub hoặc simulator có thể chủ động tạo timeout, response muộn và lỗi có kiểm soát. Với concurrency, em thiết lập điểm đồng bộ và kiểm tra trạng thái cuối cùng thay vì chỉ chạy hai thread rồi hy vọng race xảy ra. Sau retry và replay, tổng tác động tiền phải vẫn đúng và lịch sử phải truy vết được.</p>
+<p>Em bổ sung load test theo read/write mix và downstream latency thực tế, đồng thời kiểm tra deployment và recovery. Trade-off là không thể mô phỏng hoàn hảo ngân hàng production; cần sandbox, contract version và giám sát. Coverage phần trăm cao không chứng minh đã test đúng failure mode quan trọng.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Test lỗi timeout cần assert gì?</h4><p>Không chỉ exception; cần assert trạng thái chưa rõ, hold không được release tùy tiện, retry giữ đúng định danh và callback muộn chỉ chốt một lần.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không dùng ngân hàng thật để thử giao dịch có tác động tiền khi chưa có môi trường và quyền phù hợp.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-testing">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-testing" data-note="testing" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="deployment" data-group="Vận hành &amp; Chất lượng" data-priority="true" data-kind="theory">
+    <div class="card-meta"><span class="number">38</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#deployment">Docker, Kubernetes, CI/CD và graceful shutdown</a></h3>
+    <p class="cue">Reproducible build • readiness • drain • compatible migration</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-deployment">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Docker, Kubernetes, CI/CD và graceful shutdown">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-deployment"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Docker giúp đóng gói ứng dụng với runtime và dependency; Kubernetes quản lý chạy, phân tải và phục hồi workload theo cấu hình. Chúng không tự làm nghiệp vụ chịu lỗi đúng, nên em vẫn thiết kế restart ở bất kỳ điểm nào không gây mất hoặc nhân đôi tác động tiền.</p>
+<p>Readiness quyết định pod đã sẵn sàng nhận traffic chưa; liveness hỗ trợ phát hiện process cần khởi động lại. Nếu gắn liveness với một ngân hàng đang down, có thể gây restart hàng loạt không cần thiết. Em đặt request/limit tài nguyên dựa trên đo đạc và xem tác động CPU throttling, memory limit lên JVM.</p>
+<p>Khi shutdown, em ngừng nhận công việc mới, drain request hoặc dừng lấy message, cho công việc hiện tại thời gian hợp lý rồi đóng tài nguyên. Tuy nhiên kill cưỡng bức vẫn có thể xảy ra; message ack và transaction phải cho phép phục hồi an toàn.</p>
+<p>Pipeline build, kiểm thử, kiểm tra dependency và phát hành artifact nhất quán. Database migration cần tương thích khi phiên bản cũ và mới cùng chạy, thường theo expand rồi contract. Rollback application không tự rollback schema hoặc dữ liệu đã biến đổi. Em theo dõi metric nghiệp vụ sau canary, không chỉ pod Running.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Scale thêm pod có giải quyết connection pool cạn không?</h4><p>Có thể làm tổng số connection tăng vượt sức database. Cần budget toàn hệ thống, timeout, giới hạn concurrency và kiểm tra query trước.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không dùng readiness/liveness như một loại health check duy nhất cho mọi phụ thuộc.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-deployment">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-deployment" data-note="deployment" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="ai-frontend" data-group="Vận hành &amp; Chất lượng" data-priority="false" data-kind="theory">
+    <div class="card-meta"><span class="number">39</span><span>Lý thuyết</span><span>·</span><span>1–2 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#ai-frontend">Frontend payment và sử dụng AI-assisted tools</a></h3>
+    <p class="cue">UX thể hiện đúng trạng thái • AI có kiểm chứng</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-ai-frontend">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Frontend payment và sử dụng AI-assisted tools">Lưu câu</button><button class="start-timer" data-minutes="2">◷ 2 phút</button></div>
+    <div class="answer" id="answer-ai-frontend"><div class="structure">Khái niệm → Cơ chế → Ví dụ → Trade-off</div><div class="spoken"><p>Ở frontend giao dịch, em ưu tiên phản ánh đúng trạng thái server. Nút bị disable giúp giảm thao tác lặp nhưng không thay idempotency backend. Khi mạng lỗi, UI không tự kết luận thất bại; nó giữ transaction ID hoặc định danh yêu cầu để tra cứu và cho người dùng thông tin rõ ràng.</p>
+<p>Nếu dùng React, em tách trạng thái nhập liệu với trạng thái giao dịch, xử lý request cũ trả về muộn và cleanup polling khi component không còn cần. Dữ liệu số tiền được validate theo hợp đồng, còn backend vẫn kiểm tra lại quyền, amount và hạn mức.</p>
+<p>Về AI, em có thể dùng để đề xuất test case, giải thích code, soạn tài liệu hoặc tạo bản nháp implementation. Nhưng em chịu trách nhiệm kiểm tra diff, security assumptions và chạy test phù hợp. Với logic tiền và concurrency, em đặc biệt kiểm chứng các tình huống lỗi thay vì chỉ thấy code compile.</p>
+<p>Em tuân thủ policy về dữ liệu đưa vào công cụ, tránh gửi secret và dữ liệu khách hàng. Khi kể kinh nghiệm, em chỉ nêu hiệu quả thực sự đã đo hoặc quan sát, không tự bịa tỷ lệ tăng năng suất. Trade-off là AI có thể tạo code nhìn hợp lý nhưng sai phiên bản hoặc sai ranh giới transaction.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>AI đưa ra code idempotency dùng cache, em review gì?</h4><p>Em kiểm tra atomicity, durability, multi-instance, payload mismatch, retention, crash window và recovery, thay vì chỉ kiểm tra API cache được gọi đúng.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không nhận công lao hoặc số liệu hiệu quả chưa từng có.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-ai-frontend">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-ai-frontend" data-note="ai-frontend" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="exp-intro" data-group="Kinh nghiệm thực tế" data-priority="true" data-kind="experience">
+    <div class="card-meta"><span class="number">40</span><span>Kinh nghiệm</span><span>·</span><span>3–5 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#exp-intro">Giới thiệu bản thân và lý do chọn Bank Solutions</a></h3>
+    <p class="cue">90 giây mở đầu + 2 phút dự án + 1 phút liên hệ vị trí</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-exp-intro">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Giới thiệu bản thân và lý do chọn Bank Solutions">Lưu câu</button><button class="start-timer" data-minutes="4">◷ 4 phút</button></div>
+    <div class="answer" id="answer-exp-intro"><div class="structure">Bối cảnh → Trách nhiệm → Lựa chọn → Bằng chứng → Bài học</div><div class="personal">Mẫu kể chuyện, không phải kinh nghiệm có sẵn. Điền dữ kiện thật và luyện cùng phần ghi chú bên dưới.</div><div class="spoken"><p>Em có [số năm thật] kinh nghiệm phát triển phần mềm, chủ yếu với [stack thực tế]. Trong công việc gần đây, em tham gia [bài toán sản phẩm] cho [đối tượng sử dụng]. Phần em trực tiếp chịu trách nhiệm là [module/phạm vi], từ [các bước thật sự làm] đến kiểm tra kết quả sau triển khai.</p>
+<p>Em xin lấy một phần việc để nói rõ hơn. Khi [bối cảnh hoặc yêu cầu], hệ thống gặp [vấn đề cụ thể]. Mục tiêu của team là [mục tiêu]. Em phụ trách [trách nhiệm cá nhân], phối hợp với [vai trò liên quan]. Em phân biệt phần mình tự thực hiện với các quyết định do cả team cùng đưa ra.</p>
+<p>Ban đầu có hai hướng là [phương án A] và [phương án B]. Em đã kiểm tra [bằng chứng hoặc thử nghiệm]. Cuối cùng, [em/team] chọn [phương án] vì [ràng buộc quan trọng nhất]. Điểm đánh đổi là [hạn chế], nên em bổ sung [biện pháp kiểm soát]. Phần này giúp em hiểu rõ hơn về [năng lực liên quan vị trí].</p>
+<p>Sau khi triển khai, kết quả em quan sát được là [số liệu đã xác minh hoặc bằng chứng định tính]. Nếu không có metric lịch sử đáng tin, em sẽ nói rõ chưa thể khẳng định một tỷ lệ cải thiện. Điều em chắc chắn đã kiểm chứng là [test, phản hồi hoặc log có thật].</p>
+<p>Qua phần việc đó, em học được [bài học cụ thể]. Nếu làm lại, em sẽ [thay đổi dựa trên bài học], vì [lý do]. Đây cũng là hướng em muốn phát triển tiếp: hiểu sâu hơn về consistency, vận hành và recovery thay vì chỉ hoàn thành API ở happy path.</p>
+<p>Em quan tâm Bank Solutions vì bài toán kết nối ngân hàng đòi hỏi tính đúng đắn, độ tin cậy và bảo mật cao. Kinh nghiệm [điểm mạnh thật] của em có thể hỗ trợ ở [phần công việc]. Với phần domain em chưa làm trực tiếp, em đang ôn [chủ đề] và em sẽ chủ động học từ hợp đồng tích hợp, quy trình đối soát và cách team xử lý incident.</p></div>
+    <details class="workbench"><summary>Bảng vẽ & hướng dẫn thực hành</summary><h4>Trước khi luyện</h4><ul><li>Điền 1 dự án, 1 phần việc cá nhân, 1 lựa chọn có đánh đổi.</li><li>Mở đầu trong 60–90 giây; chỉ mở rộng tới 3–5 phút khi manager muốn nghe thêm.</li><li>Không cần kể toàn bộ lịch sử công việc.</li></ul></details>
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Em đã làm fintech thật chưa?</h4><p>Nếu chưa, nói thẳng: Em chưa trực tiếp làm hệ thống ngân hàng; phần liên quan em đã làm là [sự thật]. Các thiết kế fintech em vừa trình bày là kiến thức em đang luyện, không phải thành tích production.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Điền bằng dữ kiện thật trước buổi phỏng vấn; không đọc nguyên dấu ngoặc vuông.</p></div>
+    </div>
+    <details class="notes"><summary>Câu chuyện thật của Minh · điền các chỗ [ngoặc vuông]</summary><label for="note-exp-intro">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-exp-intro" data-note="exp-intro" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="exp-system" data-group="Kinh nghiệm thực tế" data-priority="true" data-kind="experience">
+    <div class="card-meta"><span class="number">41</span><span>Kinh nghiệm</span><span>·</span><span>3–5 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#exp-system">Mô tả hệ thống hiện tại trong 3–5 phút</a></h3>
+    <p class="cue">Bài toán → sơ đồ → một request → ownership → điểm nghẽn</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-exp-system">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Mô tả hệ thống hiện tại trong 3–5 phút">Lưu câu</button><button class="start-timer" data-minutes="5">◷ 5 phút</button></div>
+    <div class="answer" id="answer-exp-system"><div class="structure">Bối cảnh → Trách nhiệm → Lựa chọn → Bằng chứng → Bài học</div><div class="personal">Mẫu kể chuyện, không phải kinh nghiệm có sẵn. Điền dữ kiện thật và luyện cùng phần ghi chú bên dưới.</div><div class="spoken"><p>Em xin trình bày hệ thống theo bài toán, kiến trúc và phần em phụ trách. Hệ thống phục vụ [đối tượng], với nghiệp vụ chính là [nghiệp vụ]. Quy mô em có dữ liệu là [metric và khoảng thời gian đo]. Những số liệu như peak TPS hoặc p99 mà em chưa trực tiếp theo dõi thì em không muốn đoán; em sẽ giải thích cách em có thể kiểm tra.</p>
+<p>Trên sơ đồ, client là [loại client], request đi qua [các thành phần có thật] tới [service]. Service xác thực và kiểm tra [quy tắc], sau đó đọc hoặc ghi [database]. Các công việc [nêu việc] được xử lý [đồng bộ hoặc bất đồng bộ]. Em dùng mũi tên khác nhau để phân biệt HTTP với messaging nếu hệ thống thực sự có cả hai.</p>
+<p>Em lấy luồng [tên luồng] làm ví dụ. Đầu vào gồm [dữ liệu], hệ thống kiểm tra [điều kiện], rồi cập nhật [bảng hoặc tài nguyên]. Ranh giới transaction nằm tại [vị trí]. Nếu có lời gọi bên ngoài, kết quả được xử lý bằng [cơ chế thật]. Khi một bước lỗi, hệ thống hiện tại [hành vi thật], và hạn chế em nhận thấy là [hạn chế].</p>
+<p>Phần em trực tiếp làm là [phạm vi]. Em đã chọn hoặc đề xuất [quyết định], dựa trên [ràng buộc]. Phương án khác là [phương án], nhưng lúc đó chưa chọn vì [lý do]. Các phần [phạm vi ngoài ownership] do team khác quản lý; em hiểu contract tích hợp nhưng không nhận mình thiết kế implementation bên trong.</p>
+<p>Về vận hành, team theo dõi [metric/log/alert có thật]. Một lần hệ thống gặp [vấn đề], em dùng [bằng chứng] để xác định [nguyên nhân hoặc bottleneck]. Kết quả của cải tiến là [bằng chứng]. Nếu traffic tăng nhiều lần, giả thuyết đầu tiên của em là [điểm nghẽn], và em sẽ xác nhận bằng load test cùng [metric] trước khi scale.</p>
+<p>Điều em muốn cải thiện tiếp là [điểm cụ thể]. Em chưa thay đổi ngay vì [chi phí hoặc ưu tiên]. Bài học của em là kiến trúc cần phù hợp quy mô và khả năng vận hành, và mọi quyết định lớn cần được kiểm chứng bằng một luồng thực tế cùng failure case.</p></div>
+    <details class="workbench"><summary>Bảng vẽ & hướng dẫn thực hành</summary><h4>Vẽ trong lúc nói</h4><p>Client → điểm vào → module/service → database; thêm dependency ngoài và đường async nếu có. Khoanh phần Minh sở hữu, đánh dấu transaction và ít nhất một điểm có thể lỗi.</p></details>
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Vì sao hệ thống không dùng Kafka/microservices?</h4><p>Trả lời bằng workload và nhu cầu thật. Một monolith hoặc luồng đồng bộ có thể phù hợp; không cần xin lỗi vì chưa dùng một công nghệ.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không dùng kiến trúc ví dụ trong tài liệu này để nhận là hệ thống mình đã xây.</p></div>
+    </div>
+    <details class="notes"><summary>Câu chuyện thật của Minh · điền các chỗ [ngoặc vuông]</summary><label for="note-exp-system">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-exp-system" data-note="exp-system" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="exp-incident" data-group="Kinh nghiệm thực tế" data-priority="true" data-kind="experience">
+    <div class="card-meta"><span class="number">42</span><span>Kinh nghiệm</span><span>·</span><span>3–5 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#exp-incident">Kể một incident hoặc lỗi khó từng xử lý</a></h3>
+    <p class="cue">Ảnh hưởng → giảm tác động → bằng chứng → sửa → ngăn tái diễn</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-exp-incident">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Kể một incident hoặc lỗi khó từng xử lý">Lưu câu</button><button class="start-timer" data-minutes="5">◷ 5 phút</button></div>
+    <div class="answer" id="answer-exp-incident"><div class="structure">Bối cảnh → Trách nhiệm → Lựa chọn → Bằng chứng → Bài học</div><div class="personal">Mẫu kể chuyện, không phải kinh nghiệm có sẵn. Điền dữ kiện thật và luyện cùng phần ghi chú bên dưới.</div><div class="spoken"><p>Ở dự án [dự án], em gặp sự cố [triệu chứng] vào [bối cảnh]. Sự cố được phát hiện qua [alert, dashboard hoặc phản ánh]. Ảnh hưởng mà team xác nhận được là [phạm vi]; phần chưa rõ lúc đầu là [điều chưa biết]. Vai trò của em là [vai trò], còn [vai trò khác] phụ trách [phần khác].</p>
+<p>Việc đầu tiên của em là [biện pháp giảm ảnh hưởng có thật], đồng thời thông báo tình trạng theo quy trình của team. Em ưu tiên giảm tác động và bảo toàn dữ liệu trước khi cố tìm lời giải hoàn hảo. Em tránh thay nhiều cấu hình cùng lúc vì sẽ khó xác định nguyên nhân và tác dụng của thay đổi.</p>
+<p>Ban đầu em đặt giả thuyết [A]. Em kiểm tra [log, trace, metric hoặc query] và thấy [bằng chứng]. Dữ liệu này khiến em loại hoặc điều chỉnh giả thuyết đó. Sau đó em đối chiếu [nguồn thứ hai] để xác định [nguyên nhân]. Em phân biệt triệu chứng nhìn thấy với nguyên nhân gốc, chẳng hạn timeout có thể là hậu quả của pool cạn chứ không phải lỗi mạng.</p>
+<p>Em thực hiện [cách khắc phục]. Trước khi áp dụng rộng, em kiểm tra [test hoặc phạm vi thử]. Sau thay đổi, [metric hoặc bằng chứng] cho thấy hệ thống hồi phục. Nếu có dữ liệu dang dở, team xử lý bằng [quy trình thật], và em trực tiếp làm [phần việc].</p>
+<p>Sau incident, em bổ sung [alert/test/runbook/giới hạn tài nguyên] để phát hiện hoặc ngăn tình huống tương tự. Kết quả theo dõi sau đó là [kết quả thật], trong [khoảng thời gian]. Nếu chưa đủ thời gian quan sát, em sẽ nói mới xác nhận bản sửa bằng test và giám sát ban đầu, chưa khẳng định vấn đề không bao giờ lặp lại.</p>
+<p>Bài học lớn nhất của em là [bài học]. Nếu xử lý lại, em sẽ [cải thiện]. Em cũng nhìn nhận phần mình có thể làm tốt hơn là [trách nhiệm cá nhân], thay vì chỉ quy lỗi cho một người hoặc một dependency.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Em chưa từng on-call thì kể gì?</h4><p>Kể một lỗi khó ở staging hoặc production mà mình thật sự tham gia, nói rõ môi trường và vai trò. Không biến việc đọc postmortem thành việc trực tiếp xử lý.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Không bịa số lượng khách hàng bị ảnh hưởng hay mức tiết kiệm tiền.</p></div>
+    </div>
+    <details class="notes"><summary>Câu chuyện thật của Minh · điền các chỗ [ngoặc vuông]</summary><label for="note-exp-incident">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-exp-incident" data-note="exp-incident" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="exp-performance" data-group="Kinh nghiệm thực tế" data-priority="true" data-kind="experience">
+    <div class="card-meta"><span class="number">43</span><span>Kinh nghiệm</span><span>·</span><span>3–5 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#exp-performance">Kể một lần tối ưu hoặc lựa chọn thiết kế có đánh đổi</a></h3>
+    <p class="cue">Baseline → giả thuyết → phương án → phép đo → giới hạn</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-exp-performance">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Kể một lần tối ưu hoặc lựa chọn thiết kế có đánh đổi">Lưu câu</button><button class="start-timer" data-minutes="4">◷ 4 phút</button></div>
+    <div class="answer" id="answer-exp-performance"><div class="structure">Bối cảnh → Trách nhiệm → Lựa chọn → Bằng chứng → Bài học</div><div class="personal">Mẫu kể chuyện, không phải kinh nghiệm có sẵn. Điền dữ kiện thật và luyện cùng phần ghi chú bên dưới.</div><div class="spoken"><p>Trong [luồng nghiệp vụ], team nhận thấy [vấn đề] khi [điều kiện tải]. Trước khi sửa, em xác định mục tiêu là [SLO hoặc mục tiêu cụ thể] và lấy baseline từ [nguồn đo]. Em phân biệt thời gian trung bình với phân vị và thời gian trong app với thời gian chờ dependency.</p>
+<p>Phần em phụ trách là [phạm vi]. Em xem [query plan, trace, profile hoặc metric] và đưa ra giả thuyết [nguyên nhân]. Em kiểm tra bằng [cách kiểm chứng], thay vì mặc định cứ thêm cache hoặc thêm pod là nhanh hơn.</p>
+<p>Có hai phương án là [A] và [B]. Phương án A có lợi về [điểm], nhưng tốn [chi phí]. Phương án B có [ưu và nhược]. Em đề xuất [lựa chọn] vì [ràng buộc quan trọng], đồng thời thống nhất cách đo và rollback nếu kết quả không đạt.</p>
+<p>Em triển khai [thay đổi thật], kiểm thử correctness trước rồi đo với workload tương đương. Kết quả trước là [baseline thật], sau là [kết quả thật], ở [điều kiện đo]. Nếu chỉ có benchmark nội bộ, em nói rõ đó không phải số liệu production. Em cũng kiểm tra tác động phụ lên CPU, memory, database hoặc độ mới của dữ liệu.</p>
+<p>Trade-off mà team chấp nhận là [đánh đổi]. Ví dụ nếu có cache thật, em cần nói được invalidation, TTL và hành vi khi cache lỗi, chứ không chỉ nói latency giảm. Sau release, em theo dõi [metric] và ghi lại [tài liệu hoặc runbook].</p>
+<p>Bài học của em là đo đúng điểm nghẽn giúp chọn thay đổi nhỏ nhưng có tác dụng. Nếu traffic tăng tiếp, em sẽ kiểm tra lại giả thuyết cũ vì bottleneck có thể chuyển sang một thành phần khác; em không coi một kết quả benchmark là kết luận vĩnh viễn.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Không có số liệu trước thay đổi thì sao?</h4><p>Nói rõ giới hạn và dùng bằng chứng có thể kiểm chứng như loại bỏ full scan, số query giảm hoặc test hoàn tất trong giới hạn; không tạo phần trăm ước lượng thành thành tích.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>So sánh trước/sau phải có điều kiện tải và môi trường tương đương.</p></div>
+    </div>
+    <details class="notes"><summary>Câu chuyện thật của Minh · điền các chỗ [ngoặc vuông]</summary><label for="note-exp-performance">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-exp-performance" data-note="exp-performance" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="exp-conflict" data-group="Kinh nghiệm thực tế" data-priority="true" data-kind="experience">
+    <div class="card-meta"><span class="number">44</span><span>Kinh nghiệm</span><span>·</span><span>3–5 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#exp-conflict">Bất đồng thiết kế, deadline và ownership</a></h3>
+    <p class="cue">Rủi ro cụ thể → phương án → trao đổi bằng chứng → quyết định</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-exp-conflict">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Bất đồng thiết kế, deadline và ownership">Lưu câu</button><button class="start-timer" data-minutes="4">◷ 4 phút</button></div>
+    <div class="answer" id="answer-exp-conflict"><div class="structure">Bối cảnh → Trách nhiệm → Lựa chọn → Bằng chứng → Bài học</div><div class="personal">Mẫu kể chuyện, không phải kinh nghiệm có sẵn. Điền dữ kiện thật và luyện cùng phần ghi chú bên dưới.</div><div class="spoken"><p>Em xin lấy tình huống [tình huống thật]. Khi đó deadline là [bối cảnh], còn điểm bất đồng là [vấn đề kỹ thuật hoặc phạm vi]. Trách nhiệm của em là [phạm vi], và người có quyền quyết định cuối cùng là [vai trò].</p>
+<p>Em bắt đầu bằng việc hiểu mục tiêu của phía còn lại, chẳng hạn thời gian ra mắt, chi phí vận hành hoặc tính đơn giản. Sau đó em trình bày rủi ro theo một tình huống cụ thể: nếu [điều kiện], hệ thống sẽ [hậu quả]. Em cố tránh lập luận chỉ dựa trên sở thích công nghệ.</p>
+<p>Em đưa ra [hai hoặc ba lựa chọn có thật], gồm chi phí thực hiện và mức rủi ro còn lại. Nếu có thể, em tạo một thử nghiệm nhỏ hoặc thu thập log để làm rõ điều đang tranh luận. Với rủi ro sai dữ liệu tiền, cách giảm scope hoặc tạm tắt một nhánh chức năng thường đáng cân nhắc hơn bỏ qua lớp bảo vệ.</p>
+<p>Cuối cùng, team chọn [quyết định]. Em [đồng ý sau bằng chứng hoặc ghi lại lo ngại và thực hiện quyết định trong phạm vi phù hợp]. Phần em triển khai là [việc], cùng điều kiện theo dõi [metric hoặc tiêu chí]. Kết quả thực tế là [kết quả], và điểm còn chưa tốt là [hạn chế].</p>
+<p>Sau đó, em cùng team [việc cải thiện], chẳng hạn ghi ADR, thêm tiêu chí kiểm thử hoặc làm rõ ownership. Bài học của em là bất đồng nên được đưa về mục tiêu, dữ liệu và trách nhiệm, không biến thành cuộc tranh luận ai giỏi hơn.</p>
+<p>Nếu gặp lại tình huống tương tự, em sẽ nêu rủi ro sớm hơn và chuẩn bị phương án giảm phạm vi cụ thể. Em cũng nói rõ phần nào là bằng chứng, phần nào chỉ là giả thuyết, để người quyết định hiểu đúng mức chắc chắn.</p></div>
+
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Nếu đây chỉ là tình huống giả định thì trả lời thế nào?</h4><p>Mở đầu bằng &#x27;Nếu gặp tình huống này, em sẽ…&#x27; và mô tả hành động dự kiến. Không kể theo quá khứ như một kinh nghiệm đã xảy ra.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Nêu rủi ro có căn cứ; không biến mọi bất đồng thành lý do dừng release.</p></div>
+    </div>
+    <details class="notes"><summary>Câu chuyện thật của Minh · điền các chỗ [ngoặc vuông]</summary><label for="note-exp-conflict">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-exp-conflict" data-note="exp-conflict" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="design-withdrawal" data-group="System design • 40 phút" data-priority="true" data-kind="design">
+    <div class="card-meta"><span class="number">45</span><span>System design</span><span>·</span><span>35–40 phút</span><span class="badge priority">Ưu tiên cao</span></div>
+    <h3><a class="permalink" href="#design-withdrawal">Thiết kế rút tiền từ ví về ngân hàng</a></h3>
+    <p class="cue">Requirements → invariants → estimation → API/data → flow → failures → operations</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-design-withdrawal">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Thiết kế rút tiền từ ví về ngân hàng">Lưu câu</button><button class="start-timer" data-minutes="40">◷ 40 phút</button></div>
+    <div class="answer" id="answer-design-withdrawal"><div class="structure">Yêu cầu → Invariants → Ước tính → API & dữ liệu → Luồng → Lỗi → Vận hành</div><div class="spoken"><p>Em sẽ đi từ yêu cầu và những điều kiện phải luôn đúng, sau đó ước tính tải, thiết kế API và dữ liệu, rồi kiểm tra các tình huống lỗi. Em muốn thống nhất rằng phạm vi là rút tiền từ ví về tài khoản ngân hàng đã xác minh; việc liên kết tài khoản, KYC và chống gian lận có thể là dependency với hợp đồng rõ ràng.</p>
+<p>Trước khi vẽ, em muốn hỏi: người dùng cần kết quả cuối ngay hay chấp nhận pending? Có bao nhiêu giao dịch mỗi ngày và peak TPS? Ngân hàng hỗ trợ mã tham chiếu chống trùng, inquiry và callback như thế nào? Có yêu cầu hạn mức, currency, đối soát và thời gian xử lý ngoại lệ không? Nếu chưa có số liệu, em xin dùng giả định dưới đây để thiết kế và sẽ điều chỉnh khi có thông tin.</p>
+<p>Em chốt ba invariant: không chi vượt số dư khả dụng; một ý định rút tiền không tạo tác động tiền nhiều lần; mọi thay đổi tiền và trạng thái đều truy vết được. Em bổ sung rằng timeout không đủ để kết luận thất bại. Khi chưa biết kết quả ngân hàng, hệ thống phải giữ trạng thái có thể xác minh lại thay vì tự release tiền.</p>
+<p>Em giả định 1 triệu giao dịch một ngày, trung bình khoảng 11,6 giao dịch mỗi giây, peak gấp 20 là khoảng 232 TPS. Nếu mỗi giao dịch phát sinh 5 lần đọc trạng thái, tải đọc trung bình khoảng 58 RPS và peak cần ước tính riêng theo hành vi client. Mỗi giao dịch cùng metadata ở mức 2 KB sẽ khoảng 2 GB mỗi ngày, khoảng 730 GB một năm trước index, replicas, ledger và audit. Với 232 request mỗi giây và thời gian chờ ngân hàng trung bình 2 giây trong một trạng thái tải ổn định tương ứng, số lời gọi đang xử lý khoảng 464; đây là kiểm tra capacity, không phải kết luận tạo 464 thread là đủ.</p>
+<p>Ở high-level, API xác thực và nhận yêu cầu, Transfer module điều phối state machine, Wallet/Ledger quản lý tiền và BankConnector xử lý giao thức đối tác. Database quan hệ giữ nguồn sự thật; outbox và worker đưa công việc ra ngoài transaction ngắn. Callback receiver và inquiry worker đưa kết quả về cùng logic transition. Reconciliation so sánh với dữ liệu ngân hàng; notification là nhánh tách rời. Để giữ thiết kế ban đầu đơn giản, em có thể để Transfer và Wallet/Ledger chung một database transaction; nếu tách service sở hữu dữ liệu riêng thì cần giao thức hold idempotent và recovery tương ứng.</p>
+<p>API tạo yêu cầu là POST /v1/withdrawals, có Idempotency-Key, bankAccountId, amount và currency. User ID lấy từ credential đã xác minh, không tin userId tùy ý trong body. Hệ thống kiểm tra tài khoản đích thuộc người dùng, quyền, hạn mức và dữ liệu. Khi yêu cầu được nhận bền vững nhưng chưa hoàn tất, em trả 202 cùng transactionId, status và link tra cứu. GET /v1/withdrawals/{id} cũng kiểm tra ownership. Cùng key nhưng khác payload trả lỗi xung đột; cùng key và cùng payload trả về giao dịch hiện có theo hợp đồng.</p>
+<p>Em lưu wallet với available, held và version; withdrawal với owner, amount, currency, bank reference, status và version; idempotency record với scope, key và request fingerprint; cùng ledger, outbox và callback inbox. Unique constraint trên phạm vi key và định danh từng tác động bảo vệ race. Ledger entry có account, debit/credit, currency và business reference; mỗi journal phải cân bằng theo currency. Các bảng hold và số dư là mô hình phục vụ quyết định, được cập nhật cùng nguồn sự thật trong transaction đã chọn. Em không dựa vào chỉ một enum để bảo đảm tiền đúng.</p>
+<p>Luồng chính bắt đầu bằng claim idempotency key. Trong cùng transaction, em cập nhật có điều kiện để giảm available, tăng held nếu đủ tiền, tạo withdrawal và outbox. Nếu không đủ thì không commit một giao dịch đã giữ tiền. Nếu database báo kết quả commit chưa rõ do lỗi kết nối, request tiếp theo tra cứu qua cùng key để xác minh, không tạo key mới. Sau commit, relay phát công việc; worker claim việc rồi gọi ngân hàng bằng bank reference ổn định, không giữ row lock qua lời gọi mạng.</p>
+<p>State machine đơn giản có HELD, SUBMITTED, PENDING_CONFIRMATION, SUCCEEDED và FAILED_CONFIRMED. HELD chỉ xuất hiện sau khi hold đã commit. SUBMITTED biểu diễn đã bắt đầu gửi hoặc đang theo dõi bước gửi, không chứng minh ngân hàng đã nhận. Chỉ bằng chứng kết quả chắc chắn mới đưa sang terminal. Transition được bảo vệ bằng version hoặc điều kiện trên trạng thái hiện tại, với bút toán và outbox kết quả trong cùng transaction. Nếu trạng thái và ledger tách DB, em phải thay phần nguyên tử này bằng protocol rõ ràng, không bỏ qua khoảng hở.</p>
+<p>Khi ngân hàng thành công, em chốt hold và ledger đúng một lần. Nếu ngân hàng xác nhận thất bại cuối cùng, em release hold đúng một lần. Nếu timeout, connection reset hoặc process chết sau khi gửi, em không biết lệnh đã thực hiện chưa. Worker phục hồi sẽ inquiry theo bank reference hoặc retry cùng định danh nếu ngân hàng có idempotency đáng tin. Nếu đối tác không hỗ trợ cả hai đủ tốt, em cần quy trình đối soát và xử lý ngoại lệ; không thể hứa exactly-once bằng một Kafka topic.</p>
+<p>Callback được kiểm tra chữ ký, freshness theo giao thức, reference, amount và currency. Em lưu receipt bền vững trước khi xác nhận nhận thành công với đối tác, hoặc xử lý nguyên tử theo hợp đồng. Callback trùng bị dedupe; callback đến trước response vẫn được áp dụng nếu transition hợp lệ. Callback cũ không được hạ SUCCEEDED về PENDING. Nếu ngân hàng gửi hai kết quả terminal mâu thuẫn, em không dùng last-write-wins mà đưa vào điều tra/đối soát và giữ audit evidence.</p>
+<p>Outbox relay có thể phát trùng, consumer có thể chết sau DB commit trước ack. Vì thế các tác động có business key duy nhất và consumer ghi nhận xử lý nguyên tử với dữ liệu của mình. Việc dedupe message không đủ cho tác động ngân hàng ngoài transaction, nên bank reference phải đi xuyên suốt. Em test riêng các crash window này. Một lease worker hết hạn không chứng minh worker cũ đã dừng; fencing/version và đối tác idempotency phải ngăn tác động xấu khi có hai worker.</p>
+<p>Về lỗi dependency, em giới hạn concurrency và pool theo ngân hàng, timeout từng lời gọi và deadline tổng. Retry có backoff, jitter và ngân sách; một tầng chịu trách nhiệm retry để tránh nhân tải. Breaker giúp fail-fast hoặc hoãn công việc mới khi ngân hàng lỗi, nhưng các giao dịch chưa rõ vẫn được xác minh có kiểm soát. Client thấy trạng thái đang xử lý và được hướng dẫn tra cứu; không được lặp việc trả tiền chỉ vì notification chưa tới.</p>
+<p>Đối soát so sánh bank reference, amount, currency và trạng thái giữa ledger/withdrawal với báo cáo hoặc inquiry của ngân hàng. Em xét cutoff, timezone, file completeness và settlement delay để không kết luận lệch quá sớm. Các loại lệch gồm bên mình có bên ngân hàng không có, ngược lại, sai số tiền và khác trạng thái. Hệ thống tạo case có ownership, SLA xử lý và phê duyệt khi cần adjustment. Không chỉnh dữ liệu cho khớp mà mất dấu vết.</p>
+<p>Về scale, API và worker có thể scale ngang nhưng database, account nóng và giới hạn ngân hàng mới là những điểm cần đo. Em thêm index theo owner và thời gian cho lịch sử, theo trạng thái/next check cho inquiry, và retention/archive cho dữ liệu cũ. Cache phù hợp với cấu hình, không là căn cứ cuối cho số dư. Nếu cần shard theo wallet, giao dịch liên shard là một bài toán bổ sung; em chưa thêm độ phức tạp đó khi tải giả định chưa chứng minh cần.</p>
+<p>Vận hành cần success rate theo ngân hàng, p95/p99, số và tuổi giao dịch pending, held quá lâu, outbox lag, duplicate callbacks và lệch đối soát. Correlation ID nối API, worker và callback; log che dữ liệu nhạy cảm. Em phân biệt SLO nhận yêu cầu bền vững với SLO hoàn tất tiền, đồng thời chốt RPO/RTO và khả năng failover trước khi hứa không mất dữ liệu. Khi không xác lập được quyền ghi nhất quán, thao tác chi tiền cần dừng hoặc pending, không ghi ở hai nơi độc lập.</p>
+<p>Cuối bài, lựa chọn của em là transaction ngắn trong vùng sở hữu tiền, workflow bất đồng bộ có định danh ổn định, idempotency nhiều lớp và đối soát. Đánh đổi là một số giao dịch chờ lâu hơn khi đối tác không rõ kết quả, nhưng em có cách bảo vệ tiền và phục hồi có kiểm soát. Em sẵn sàng đi sâu vào schema, cơ chế hold hoặc một crash window cụ thể theo phần anh muốn kiểm tra.</p></div>
+    <details class="workbench"><summary>Bảng vẽ & hướng dẫn thực hành</summary>
+<h4>Chạy bài 40 phút: nói, vẽ và tự trả lời</h4>
+<table><thead><tr><th>Mốc</th><th>Việc cần hoàn thành</th></tr></thead><tbody>
+<tr><td>0–4 phút</td><td>Đọc mở bài, hỏi requirements, chốt scope và 3 invariants.</td></tr>
+<tr><td>4–7 phút</td><td>Tính TPS, storage và in-flight calls trên giấy. Nói rõ giả định và overhead chưa tính.</td></tr>
+<tr><td>7–13 phút</td><td>Vẽ kiến trúc, đánh dấu source of truth, đồng bộ/bất đồng bộ và boundary database.</td></tr>
+<tr><td>13–21 phút</td><td>Viết API, schema, unique constraints; vẽ state machine và happy path.</td></tr>
+<tr><td>21–31 phút</td><td>Tự trả lời lần lượt: timeout, callback trước response, callback trùng, worker crash, DB commit chưa rõ.</td></tr>
+<tr><td>31–37 phút</td><td>Giải thích đối soát, bottleneck, metric, failover và bảo mật.</td></tr>
+<tr><td>37–40 phút</td><td>Nêu trade-offs, trả lời 1–2 câu hỏi sâu và chốt giới hạn bảo đảm.</td></tr>
+</tbody></table>
+<p>Script lời nói khoảng 15–20 phút tùy nhịp. Thời gian còn lại dành cho vẽ, tính toán và câu hỏi đào sâu; không cố kéo dài bằng cách đọc chậm.</p>
+<h4>Sơ đồ để tập vẽ</h4>
+<pre>Client → API / Auth → Transfer + Wallet/Ledger → SQL database
+                         │                         │
+                         │                    Outbox (cùng TX)
+                         │                         ↓
+                         │                   Relay → Queue
+                         │                         ↓
+                         │                   Bank worker → Bank
+                         │                                    │
+                         └── Transition handler ← Callback ───┘
+                                  ↑
+                           Inquiry / Reconciliation
+                                  │
+                             Result outbox → Notifications</pre>
+<h4>Schema tối thiểu để giải thích trên bảng</h4>
+<pre>wallet(id, owner_id, currency, available_minor, held_minor, version)
+withdrawal(id, wallet_id, bank_account_ref, amount_minor, currency,
+           status, bank_reference UNIQUE, version, next_check_at)
+idempotency(scope, key, fingerprint, withdrawal_id, created_at)
+  UNIQUE(scope, key)
+journal(id, business_reference UNIQUE, currency, created_at)
+ledger_entry(id, journal_id, account_id, side, amount_minor)
+outbox(event_id PRIMARY KEY, aggregate_id, event_type, payload, status)
+callback_inbox(bank_id, event_key, payload_hash, received_at, status)
+  UNIQUE(bank_id, event_key)</pre>
+<p>Currency và đơn vị nhỏ nhất phải được định nghĩa. Journal cân bằng cần được enforce bằng logic transaction/constraint phù hợp; chỉ tạo các cột không tự bảo đảm điều đó. Nếu ngân hàng không có event ID, thiết kế khóa dedupe theo hợp đồng và vẫn bảo vệ business transition.</p>
+<h4>Cập nhật giữ tiền: đoạn minh họa</h4>
+<pre>BEGIN;
+-- Claim idempotency key bằng unique constraint, xử lý conflict rõ ràng.
+UPDATE wallet
+SET available_minor = available_minor - :amount,
+    held_minor = held_minor + :amount,
+    version = version + 1
+WHERE id = :wallet_id
+  AND currency = :currency
+  AND available_minor &gt;= :amount;
+-- amount phải &gt; 0; yêu cầu đúng 1 row updated.
+-- Tạo withdrawal, reservation/audit và outbox cùng transaction.
+COMMIT;
+-- HTTP tới ngân hàng thực hiện sau transaction này.</pre>
+<h4>State machine</h4>
+<pre>HELD → SUBMITTED → SUCCEEDED
+              ├→ FAILED_CONFIRMED
+              └→ PENDING_CONFIRMATION → SUCCEEDED / FAILED_CONFIRMED
+Callback có thể tới trước response: kiểm tra bằng chứng + transition,
+không ép phải nhận response API trước mới chấp nhận kết quả.</pre>
+</details>
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 4 câu</summary><div class="follow"><h4>Nếu giữ tiền lâu, user khó chịu thì sao?</h4><p>Thiết kế pending SLA, inquiry có ngân sách, cảnh báo và xử lý ngoại lệ. Chính sách release phải có căn cứ về kết quả và phân bổ rủi ro được phê duyệt; không suy ra timeout nghĩa là ngân hàng chưa trả tiền.</p></div><div class="follow"><h4>Nếu không dùng message broker?</h4><p>Worker có thể đọc durable work/outbox trong DB với claim/version đúng. Broker là lựa chọn phân phối tải; cần chứng minh độ bền và recovery, không bắt buộc Kafka để thiết kế hợp lệ.</p></div><div class="follow"><h4>Nếu ngân hàng không có idempotency?</h4><p>Giảm gửi lại tự động, dùng inquiry/reference nếu được hỗ trợ, đối soát và manual resolution. Nêu giới hạn bảo đảm; không giả định hệ thống mình kiểm soát được side effect ở đối tác.</p></div><div class="follow"><h4>Nếu wallet và transfer nằm ở hai database?</h4><p>Tạo protocol Reserve/Confirm/Release idempotent với operation ID, lưu state từng phía và recovery. Không còn local ACID cho cả hai; cần giải thích timeout ở từng bước và ownership của hold.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Các con số là giả định luyện tập, không phải traffic hoặc kiến trúc nội bộ của Zalopay.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-design-withdrawal">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-design-withdrawal" data-note="design-withdrawal" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article>
+<article class="card" id="design-variants" data-group="System design • Mở rộng" data-priority="false" data-kind="design">
+    <div class="card-meta"><span class="number">46</span><span>System design</span><span>·</span><span>20 phút</span><span class="badge">Mở rộng</span></div>
+    <h3><a class="permalink" href="#design-variants">Payment Gateway, Wallet, Loyalty và Notification</a></h3>
+    <p class="cue">Giữ framework • thay invariant và nguồn sự thật theo bài toán</p>
+    <div class="card-actions"><button class="read-toggle" aria-expanded="true" aria-controls="answer-design-variants">Ẩn script</button><button class="done-toggle" aria-pressed="false">Đánh dấu đã luyện</button><button class="save-toggle" aria-pressed="false" aria-label="Lưu câu: Payment Gateway, Wallet, Loyalty và Notification">Lưu câu</button><button class="start-timer" data-minutes="20">◷ 20 phút</button></div>
+    <div class="answer" id="answer-design-variants"><div class="structure">Yêu cầu → Invariants → Ước tính → API & dữ liệu → Luồng → Lỗi → Vận hành</div><div class="spoken"><p>Nếu đề là Payment Gateway, em làm rõ merchant tạo payment intent, ngân hàng hoặc PSP xử lý tiền, còn gateway sở hữu trạng thái điều phối và webhook. Em không tự giả định gateway giữ số dư ví. Em tách một intent với các attempt, giữ định danh chống trùng và không tạo attempt mới ở ngân hàng khác khi attempt cũ vẫn có thể thành công. Webhook merchant dùng event ID ổn định, chữ ký, retry có giới hạn và API tra cứu; webhook lỗi không làm payment thành công chạy lại.</p>
+<p>Nếu đề là eWallet, em mở rộng bài rút tiền sang nạp và chuyển nội bộ. Em làm rõ ledger là nguồn sự thật nào, available/held được tính hoặc materialize ra sao, và một journal phải cân bằng theo currency. Chuyển nội bộ trong cùng database có thể ghi debit và credit nguyên tử; tách shard hoặc owner service thì cần protocol và recovery mới. 100K concurrent users phải được đổi thành workload bằng giả định hành vi, không xem là 100K TPS. Event sourcing là lựa chọn có đánh đổi, không mặc định bắt buộc.</p>
+<p>Nếu đề là Loyalty, invariant là không redeem vượt điểm khả dụng và mỗi sự kiện earn chỉ tạo điểm một lần. Em lưu point lots có ngày hết hạn, rule/campaign version và business event ID. Redeem phân bổ theo quy tắc như hết hạn sớm trước và phải atomic với cập nhật lot; expiry job có thể chạy lại an toàn. Eventual consistency phù hợp với hiển thị hoặc ghi nhận earn có độ trễ, nhưng quyết định redeem cần bảo vệ cạnh tranh với redeem khác và expiry. Em không sửa rule cũ rồi để replay tính ra điểm khác mà không có policy.</p>
+<p>Nếu đề là Notification, em tách event nghiệp vụ với delivery job theo channel, template version, recipient và locale. Worker theo email/SMS/push có quota, retry, provider timeout và DLQ. Em phân biệt provider accepted với người dùng thực sự nhận; timeout sau khi provider nhận có thể gây duplicate nếu retry và provider không hỗ trợ idempotency. Dedupe trong DB không tự xóa khoảng hở đó. Fanout lớn dùng batch/cursor và backpressure, ưu tiên thông báo giao dịch so với marketing theo policy.</p>
+<p>Ở cả bốn bài, em vẫn bắt đầu từ requirements, estimation và invariants, rồi chọn source of truth và vẽ failure path. Em chỉ dùng lại pattern khi giả định tương thích; không sao chép nguyên wallet schema cho mọi sản phẩm. Đánh đổi được nói rõ ở chỗ cần consistency mạnh, chỗ chấp nhận trễ và khả năng phục hồi khi dependency không có bảo đảm mình mong muốn.</p></div>
+    <details class="workbench"><summary>Bảng vẽ & hướng dẫn thực hành</summary><h4>Checklist để tự mở rộng từng đề</h4><ul>
+<li><strong>Gateway:</strong> merchant auth; intent/attempt; bank reference; callback và webhook tách biệt; settlement/reconciliation; merchant portal tra cứu.</li>
+<li><strong>Wallet:</strong> ledger accounts; journal cân bằng; hold/confirm/release; chuyển nội bộ; cross-shard; audit và adjustment.</li>
+<li><strong>Loyalty:</strong> earn dedupe; rule version; lot expiry; redeem đồng thời; refund điểm; campaign timezone; replay.</li>
+<li><strong>Notification:</strong> template version; preferences theo loại thông báo; fanout; rate limit provider; accepted/delivered; PII retention; duplicate window.</li>
+</ul><h4>Bài phụ Rate Limiter — 20 phút</h4><p>Dùng script Token Bucket trong nhóm Giao dịch: dành 4 phút chốt scope và burst; 5 phút mô tả state token/timestamp và phép refill; 5 phút atomic Redis update, TTL, cluster/hot key; 6 phút Redis failover, fail-open/closed, fallback và metric. Viết phép refill = min(capacity, tokens + elapsed × rate), rồi chỉ trừ token nếu đủ chi phí request.</p></details>
+    <details class="deep-dive"><summary>Manager hỏi tiếp · 1 câu</summary><div class="follow"><h4>Luyện bài phụ thế nào?</h4><p>Chọn một đề, dành 3 phút requirements/invariants, 3 phút estimation, 6 phút API/data/flow và 8 phút failure/trade-off. Dùng đoạn script tương ứng làm mở bài, rồi tự vẽ và trả lời checklist bên dưới.</p></div></details>
+    <div class="trap"><strong>Điểm dễ mất điểm</strong><p>Đây là script chuyển đề và checklist mở rộng, không phải bốn bản đọc 40 phút độc lập.</p></div>
+    </div>
+    <details class="notes"><summary>Ghi chú của Minh</summary><label for="note-design-variants">Chỉ lưu trong trình duyệt này. Không gửi lên GitHub.</label><textarea id="note-design-variants" data-note="design-variants" rows="5" placeholder="Ví dụ thật, con số đã kiểm chứng, điều muốn hỏi thêm…"></textarea></details>
+    </article></div><div id="empty" hidden><h3>Chưa tìm thấy bài phù hợp.</h3><p>Thử một từ khóa ngắn hơn hoặc xóa bộ lọc.</p><button id="clear-filters" class="primary">Xóa tìm kiếm & bộ lọc</button></div></section>
+<section id="references" class="references"><p class="eyebrow">READ THE ORIGINALS</p><h2>Tài liệu để đi sâu hơn.</h2><p>Script là nội dung luyện tập biên soạn riêng. Các nguồn chính thức dưới đây dùng để đối chiếu cơ chế; luôn xem đúng phiên bản Java, Spring và database của hệ thống thực tế. Không có dữ liệu riêng hay kiến trúc nội bộ của Zalopay trong tài liệu.</p><ul><li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html" target="_blank" rel="noopener noreferrer">Oracle · Java 8 concurrency &amp; happens-before ↗</a></li><li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html" target="_blank" rel="noopener noreferrer">Oracle · CompletableFuture (Java 8) ↗</a></li><li><a href="https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html" target="_blank" rel="noopener noreferrer">Oracle · Virtual threads (Java 21) ↗</a></li><li><a href="https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-g1-garbage-collector1.html" target="_blank" rel="noopener noreferrer">Oracle · G1 và lựa chọn garbage collector ↗</a></li><li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html" target="_blank" rel="noopener noreferrer">Spring · Declarative transactions ↗</a></li><li><a href="https://docs.spring.io/spring-security/reference/servlet/architecture.html" target="_blank" rel="noopener noreferrer">Spring Security · Servlet architecture ↗</a></li><li><a href="https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html" target="_blank" rel="noopener noreferrer">MySQL 8.4 · InnoDB isolation levels ↗</a></li><li><a href="https://kafka.apache.org/41/design/design/" target="_blank" rel="noopener noreferrer">Apache Kafka · Delivery semantics ↗</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc9700.html" target="_blank" rel="noopener noreferrer">IETF · RFC 9700, OAuth2 security ↗</a></li><li><a href="https://openid.net/specs/openid-connect-core-1_0.html" target="_blank" rel="noopener noreferrer">OpenID Foundation · OpenID Connect Core ↗</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc8725.html" target="_blank" rel="noopener noreferrer">IETF · RFC 8725, JWT best practices ↗</a></li><li><a href="https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html" target="_blank" rel="noopener noreferrer">OASIS · SAML 2.0 technical overview ↗</a></li><li><a href="https://www.rfc-editor.org/rfc/rfc8446.html" target="_blank" rel="noopener noreferrer">IETF · RFC 8446, TLS 1.3 ↗</a></li><li><a href="https://www.pcisecuritystandards.org/faqs/for-pci-dss-why-is-storage-of-sensitive-authentication-data-sad-after-authorization-not-permitted-even-when-there-are-no-primary-account-numbers-pans-in-an-environment/" target="_blank" rel="noopener noreferrer">PCI SSC · Sensitive authentication data after authorization ↗</a></li><li><a href="https://blog.pcisecuritystandards.org/protecting-cardholder-data-with-encryption" target="_blank" rel="noopener noreferrer">PCI SSC · Protecting cardholder data ↗</a></li><li><a href="https://redis.io/docs/latest/develop/use-cases/rate-limiter/" target="_blank" rel="noopener noreferrer">Redis · Rate limiting ↗</a></li></ul></section>
+<footer><span>FINTECH FIELDNOTES · VIẾT ĐỂ LUYỆN NÓI</span><p>Nội dung cập nhật 06.11.2026 · Ghi chú & tiến độ chỉ lưu trên trình duyệt đang dùng. Không nhập thông tin mật của công ty hoặc khách hàng vào ghi chú luyện tập.</p><a href="#top">Về đầu trang ↑</a></footer></main>
+<div id="timer" class="timer" hidden role="region" aria-label="Đồng hồ luyện nói"><div><span id="timer-label">Đang luyện</span><strong id="timer-display" role="timer">02:00</strong></div><button id="timer-pause">Tạm dừng</button><button id="timer-reset">Làm lại</button><button id="timer-close" aria-label="Đóng bộ đếm giờ">×</button></div><div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+<script>/* Browser-local study controls. No network requests or external dependencies. */
+(() => {
+  'use strict';
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const all = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const cards = all('.card');
+  const key = 'fintech-fieldnotes-v1';
+  let state = { done: [], saved: [], notes: {}, theme: 'light', size: 18 };
+  let category = 'all';
+  let concealed = false;
+  let printedDetails = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem(key) || 'null');
+    if (saved && typeof saved === 'object') {
+      state.done = Array.isArray(saved.done) ? saved.done.filter(x => typeof x === 'string') : [];
+      state.saved = Array.isArray(saved.saved) ? saved.saved.filter(x => typeof x === 'string') : [];
+      state.notes = saved.notes && typeof saved.notes === 'object' && !Array.isArray(saved.notes) ? saved.notes : {};
+      state.theme = saved.theme === 'dark' ? 'dark' : 'light';
+      state.size = Number.isFinite(saved.size) ? Math.min(24, Math.max(16, saved.size)) : 18;
+    }
+  } catch (_) { $('#storage-warning').hidden = false; }
+  const persist = () => {
+    try { localStorage.setItem(key, JSON.stringify(state)); }
+    catch (_) { $('#storage-warning').hidden = false; }
+  };
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+  const searchable = new Map(cards.map(card => [card.id, normalize(card.textContent)]));
+  function applyAppearance() {
+    document.body.classList.toggle('dark', state.theme === 'dark');
+    document.documentElement.style.setProperty('--reading', `${state.size}px`);
+    $('#theme').textContent = state.theme === 'dark' ? 'Giao diện sáng' : 'Giao diện tối';
+    $('#theme').setAttribute('aria-label', state.theme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối');
+    $('#font-down').disabled = state.size <= 16;
+    $('#font-up').disabled = state.size >= 24;
+  }
+  function refreshProgress() {
+    const completed = cards.filter(c => state.done.includes(c.id)).length;
+    $('#progress').value = completed;
+    $('#progress-label').textContent = `${completed}/${cards.length}`;
+    cards.forEach(card => {
+      const done = state.done.includes(card.id), saved = state.saved.includes(card.id);
+      card.classList.toggle('completed', done);
+      $('.done-toggle', card).setAttribute('aria-pressed', String(done));
+      $('.done-toggle', card).textContent = done ? '✓ Đã luyện' : 'Đánh dấu đã luyện';
+      $('.save-toggle', card).setAttribute('aria-pressed', String(saved));
+      $('.save-toggle', card).textContent = saved ? '★ Đã lưu' : 'Lưu câu';
+    });
+  }
+  function filterCards() {
+    const query = normalize($('#search').value.trim());
+    const mode = $('#filter').value;
+    let count = 0;
+    cards.forEach(card => {
+      const matchesCategory = category === 'all' || card.dataset.group === category;
+      const matchesQuery = !query || query.split(/\s+/).every(word => searchable.get(card.id).includes(word));
+      const matchesMode = mode === 'all' || (mode === 'priority' && card.dataset.priority === 'true') ||
+        (mode === 'saved' && state.saved.includes(card.id)) || (mode === 'done' && state.done.includes(card.id)) ||
+        (mode === 'todo' && !state.done.includes(card.id));
+      card.hidden = !(matchesCategory && matchesQuery && matchesMode);
+      if (!card.hidden) count++;
+    });
+    $('#result-count').textContent = `${count} / ${cards.length} bài`;
+    $('#empty').hidden = count !== 0;
+    $('#section-title').textContent = category === 'all' ? 'Tất cả bài luyện' : category;
+    all('.nav-item').forEach(button => {
+      const active = button.dataset.category === category;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+  function selectCategory(value, scroll = true) {
+    category = value;
+    filterCards();
+    if (matchMedia('(max-width:700px)').matches) $('.nav-wrap').open = false;
+    if (scroll) $('#library').scrollIntoView({ block: 'start' });
+  }
+  const showAnswer = (card, visible) => {
+    $('.answer', card).hidden = !visible;
+    $('.read-toggle', card).textContent = visible ? 'Ẩn script' : 'Hiện script';
+    $('.read-toggle', card).setAttribute('aria-expanded', String(visible));
+  };
+  cards.forEach(card => {
+    const note = $('[data-note]', card);
+    note.value = typeof state.notes[card.id] === 'string' ? state.notes[card.id] : '';
+    note.addEventListener('input', () => { state.notes[card.id] = note.value; persist(); });
+    $('.read-toggle', card).addEventListener('click', () => showAnswer(card, $('.answer', card).hidden));
+    [['.done-toggle', 'done'], ['.save-toggle', 'saved']].forEach(([selector, name]) => {
+      $(selector, card).addEventListener('click', () => {
+        state[name] = state[name].includes(card.id) ? state[name].filter(id => id !== card.id) : [...state[name], card.id];
+        persist(); refreshProgress(); filterCards();
+      });
+    });
+    $('.start-timer', card).addEventListener('click', event => startTimer(Number(event.currentTarget.dataset.minutes), $('h3', card).textContent));
+  });
+  all('.nav-item').forEach(button => button.addEventListener('click', () => selectCategory(button.dataset.category)));
+  $('#search').addEventListener('input', filterCards);
+  $('#filter').addEventListener('change', filterCards);
+  $('#clear-filters').addEventListener('click', () => { $('#search').value = ''; $('#filter').value = 'all'; selectCategory('all', false); });
+  $('#start-priority').addEventListener('click', () => { $('#search').value = ''; $('#filter').value = 'priority'; selectCategory('all'); });
+  $('#open-design').addEventListener('click', () => { $('#search').value = ''; $('#filter').value = 'all'; selectCategory('System design • 40 phút'); showAnswer($('#design-withdrawal'), true); });
+  $('#practice').addEventListener('click', () => {
+    concealed = !concealed;
+    cards.forEach(card => showAnswer(card, !concealed));
+    $('#practice').setAttribute('aria-pressed', String(concealed));
+    $('#practice').textContent = concealed ? 'Hiện tất cả script' : 'Ẩn tất cả script';
+  });
+  $('#theme').addEventListener('click', () => { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyAppearance(); persist(); });
+  $('#font-down').addEventListener('click', () => { state.size = Math.max(16, state.size - 1); applyAppearance(); persist(); });
+  $('#font-up').addEventListener('click', () => { state.size = Math.min(24, state.size + 1); applyAppearance(); persist(); });
+  $('#print').addEventListener('click', () => window.print());
+  window.addEventListener('beforeprint', () => {
+    printedDetails = all('.card:not([hidden]) .deep-dive, .card:not([hidden]) .workbench').map(el => [el, el.open]);
+    printedDetails.forEach(([el]) => { el.open = true; });
+  });
+  window.addEventListener('afterprint', () => { printedDetails.forEach(([el, wasOpen]) => { el.open = wasOpen; }); });
+  let timerHandle = null, timerDeadline = 0, timerRemaining = 0, timerDuration = 0, timerPaused = false;
+  function renderTimer() {
+    const ms = timerPaused ? timerRemaining : Math.max(0, timerDeadline - Date.now());
+    const seconds = Math.ceil(ms / 1000);
+    $('#timer-display').textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+    if (!timerPaused && ms === 0) {
+      clearInterval(timerHandle); timerHandle = null;
+      $('#timer').classList.add('finished');
+      $('#timer-label').textContent = 'Hết giờ · tự đánh giá và luyện lại';
+      $('#timer-pause').disabled = true;
+      $('#announcement').textContent = 'Hết thời gian luyện nói. Bạn có thể bấm làm lại.';
+    }
+  }
+  function startTimer(minutes, title) {
+    clearInterval(timerHandle);
+    timerDuration = minutes * 60 * 1000;
+    timerRemaining = timerDuration; timerDeadline = Date.now() + timerDuration; timerPaused = false;
+    $('#timer').hidden = false; $('#timer').classList.remove('finished');
+    $('#timer-label').textContent = title; $('#timer').dataset.title = title;
+    $('#timer-pause').textContent = 'Tạm dừng'; $('#timer-pause').disabled = false;
+    $('#announcement').textContent = `Bắt đầu ${minutes} phút luyện nói.`;
+    renderTimer(); timerHandle = setInterval(renderTimer, 250);
+  }
+  $('#timer-pause').addEventListener('click', () => {
+    if (!timerPaused) { timerRemaining = Math.max(0, timerDeadline - Date.now()); timerPaused = true; }
+    else { timerDeadline = Date.now() + timerRemaining; timerPaused = false; }
+    $('#timer-pause').textContent = timerPaused ? 'Tiếp tục' : 'Tạm dừng'; renderTimer();
+  });
+  $('#timer-reset').addEventListener('click', () => startTimer(timerDuration / 60000, $('#timer').dataset.title));
+  $('#timer-close').addEventListener('click', () => { clearInterval(timerHandle); timerHandle = null; $('#timer').hidden = true; });
+  function revealHash() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+    const card = document.getElementById(id);
+    if (card && card.classList.contains('card')) {
+      $('#search').value = ''; $('#filter').value = 'all'; selectCategory('all', false);
+      showAnswer(card, true); requestAnimationFrame(() => card.scrollIntoView({ block: 'start' }));
+    }
+  }
+  if (matchMedia('(max-width:700px)').matches) $('.nav-wrap').open = false;
+  applyAppearance(); refreshProgress(); filterCards(); revealHash();
+  window.addEventListener('hashchange', revealHash);
+})();
+</script></body></html>
